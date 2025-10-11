@@ -3,7 +3,6 @@ package net.lelyak.edu.dao.impl;
 import net.lelyak.edu.dao.BaseDAO;
 import net.lelyak.edu.entity.User;
 import net.lelyak.edu.utils.Logger;
-import net.lelyak.edu.utils.SQLStatements;
 import net.lelyak.edu.utils.StringUtilities;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -21,7 +20,7 @@ public class UserDAO extends BaseDAO<User> {
 
     public User getByEmail(String email) {
         String sql = StringUtilities
-                .appendStrings(SQLStatements.SELECT_FROM_TABLE_BY_EMAIL, USER_TABLE_NAME);
+                .appendStrings("SELECT * FROM %s WHERE email=:email", USER_TABLE_NAME);
 
         MapSqlParameterSource parameters = new MapSqlParameterSource("email", email);
 

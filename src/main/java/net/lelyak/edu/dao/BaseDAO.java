@@ -2,7 +2,6 @@ package net.lelyak.edu.dao;
 
 import net.lelyak.edu.entity.BaseEntity;
 import net.lelyak.edu.utils.Logger;
-import net.lelyak.edu.utils.SQLStatements;
 import net.lelyak.edu.utils.StringUtilities;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -132,14 +131,14 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
 
     protected boolean exists(long id) {
         long rowCount = getNamedParameterJdbcTemplate().queryForObject(
-                String.format(SQLStatements.TOTAL_COUNT_BY_ID, tableName),
+                String.format("SELECT COUNT(*) FROM %s WHERE id=:id", tableName),
                 new MapSqlParameterSource("id", id),
                 long.class);
         return rowCount > 0;
     }
 
     protected boolean existsByEmail(String email) {
-        String sql = StringUtilities.appendStrings(SQLStatements.TOTAL_COUNT_BY_MAIL, tableName);
+        String sql = StringUtilities.appendStrings("SELECT COUNT(*) FROM %s WHERE email=:email", tableName);
         Logger.debug("QUERY is: " + sql);
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("email", email);
         long rowCount = getNamedParameterJdbcTemplate().queryForObject(sql, parameterSource, long.class);
@@ -147,7 +146,7 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
     }
 
     private boolean exists(String name) {
-        String sql = StringUtilities.appendStrings(SQLStatements.TOTAL_COUNT_BY_NAME, tableName);
+        String sql = StringUtilities.appendStrings("SELECT COUNT(*) FROM %s WHERE name=:name", tableName);
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("name", name);
         long rowCount = getNamedParameterJdbcTemplate().queryForObject(sql, parameterSource, long.class);
         return rowCount > 0;
