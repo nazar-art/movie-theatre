@@ -22,7 +22,7 @@ import java.util.Set;
 @Component
 public class RandomTestObjectsGenerator {
     private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(RandomTestObjectsGenerator.class);
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy h:mm");
 
     @Autowired
     private DataFactory dataFactory;
@@ -32,12 +32,12 @@ public class RandomTestObjectsGenerator {
     public Date getRandomDate() {
         Date date;
         try {
-            date = DATE_FORMAT.parse("01.01.1980");
+            date = DATE_FORMAT.parse("01.01.2025 15:00");
         } catch (ParseException e) {
             LOGGER.error("error during date parsing", e);
             throw new RuntimeException(e);
         }
-        return dataFactory.getDate(date, 2, 560);
+        return dataFactory.getDate(date, 2, 260);
     }
 
     public String getRandomWord() {
