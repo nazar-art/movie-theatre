@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +44,7 @@ public class TicketService {
 
     @Transactional
     public boolean bookTicket(Ticket ticket) {
-        Logger.debug("Book ticket: " + ticket);
+        Logger.info("Book ticket: " + ticket);
         double price = getTicketPrice(ticket.getEvent(), ticket.getOnDate(), ticket.getUser());
         ticket.setPrice(price);
 
@@ -63,15 +62,12 @@ public class TicketService {
     }
 
     public List<Ticket> getTicketsForUser(User user) {
-        Logger.debug("TicketService.getTicketsForUser");
+        Logger.info("TicketService.getTicketsForUser");
         List<Ticket> tickets = ticketRepository.getAll().stream()
-                .filter(Objects::nonNull)
-                .filter(t -> Objects.equals(t.getUser().getId(), user.getId()))
-                .collect(Collectors.toList());
-        Logger.debug("COLLECTED TICKETS: " + tickets);
-        if (tickets == null) {
-            tickets = Collections.emptyList();
-        }
+            .filter(Objects::nonNull)
+            .filter(t -> Objects.equals(t.getUser().getId(), user.getId()))
+            .collect(Collectors.toList());
+        Logger.info("COLLECTED TICKETS: " + tickets);
         return tickets;
     }
 
@@ -86,25 +82,16 @@ public class TicketService {
     }
 
     public List<Ticket> getTicketsForEvent(Event event) {
-        List<Ticket> tickets = ticketRepository.getAll().stream()
-                .filter(Objects::nonNull)
-                .filter(t -> t.getEvent().equals(event))
-                .collect(Collectors.toList());
-        if (tickets == null) {
-            tickets = Collections.emptyList();
-        }
-        return tickets;
+        return ticketRepository.getAll().stream()
+            .filter(Objects::nonNull)
+            .filter(t -> t.getEvent().equals(event))
+            .collect(Collectors.toList());
     }
 
     public List<Ticket> getTicketsForEventDate(Event event, Date date) {
-        List<Ticket> tickets = ticketRepository.getAll().stream()
-                .filter(t -> t.getEvent().equals(event)
-                        && t.getOnDate().equals(date))
-                .collect(Collectors.toList());
-
-        if (tickets == null) {
-            tickets = Collections.emptyList();
-        }
-        return tickets;
+        return ticketRepository.getAll().stream()
+            .filter(t -> t.getEvent().equals(event)
+                && t.getOnDate().equals(date))
+            .collect(Collectors.toList());
     }
 }

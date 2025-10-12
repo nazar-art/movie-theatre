@@ -11,6 +11,7 @@ import org.apache.commons.lang.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -71,12 +72,12 @@ public class UserService {
     }
 
     public User getByEmail(String email) {
-        Logger.debug("Looking for the user with mail: " + email);
+        Logger.info("Looking for the user with mail: " + email);
         return userRepository.getUserByEmail(email);
     }
 
     public User getByName(String name) {
-        Logger.debug("Looking for the user with name: " + name);
+        Logger.info("Looking for the user with name: " + name);
         return userRepository.getByName(name);
     }
 
@@ -105,8 +106,7 @@ public class UserService {
     }
 
     public List<User> getAll() {
-        return userRepository.getAll().stream()
-                .collect(Collectors.toList());
+        return new ArrayList<>(userRepository.getAll());
     }
 
     public boolean isUserExist(User user) {

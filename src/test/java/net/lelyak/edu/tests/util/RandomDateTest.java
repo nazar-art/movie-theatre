@@ -15,14 +15,14 @@ public class RandomDateTest {
 
     @Test
     public void testRandomDate() throws ParseException {
-        Random rnd = new Random();
+        Random random = new Random();
 
-        DateFormat idf = new SimpleDateFormat("YYYY.MM.DD"),
-                odf = new SimpleDateFormat("YYYY.MM.DD HH:MM");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        DateFormat odf = new SimpleDateFormat("yyyy.MM.dd hh:mm");
 
-        RandomDate rd = new RandomDate(idf.parse("1960.3.23"), idf.parse("2054.12.31"));
-        for (int i = 0; i < rnd.nextInt(100); i++) {
-            System.out.format("%s", odf.format(rd.get()));
+        RandomDate randomDate = new RandomDate(dateFormat.parse("1960.3.23"), dateFormat.parse("2054.12.31"));
+        for (int i = 0; i < random.nextInt(100); i++) {
+            System.out.println(odf.format(randomDate.get()));
         }
         assertTrue(true);
     }

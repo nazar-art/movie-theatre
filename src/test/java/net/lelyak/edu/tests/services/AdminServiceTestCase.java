@@ -22,7 +22,7 @@ public class AdminServiceTestCase extends BaseTest {
     private Random random = new Random();
 
     private List<Event> randomEvents() {
-        List<Event> testEvents = rtog.randomEventsList(5 + random.nextInt(10));
+        List<Event> testEvents = randomTestGenerator.randomEventsList(5 + random.nextInt(10));
         for (Event event : testEvents) {
             event.setAuditorium(auditoriumService.getRandomAuditorium());
         }
@@ -47,7 +47,7 @@ public class AdminServiceTestCase extends BaseTest {
 
     @Test
     public void testListTickets() {
-        List<User> testUsers = rtog.randomUserList(5 + random.nextInt(10));
+        List<User> testUsers = randomTestGenerator.randomUserList(5 + random.nextInt(10));
         List<Event> testEvents = randomEvents();
         Collection<Ticket> ticketRepositoryTickets, adminServiceTickets;
 
@@ -63,7 +63,7 @@ public class AdminServiceTestCase extends BaseTest {
             Ticket ticket = new Ticket();
             ticket.setOnDate(event.getAirDate());
             ticket.setEvent(event);
-            ticket.setName(rtog.getRandomWord());
+            ticket.setName(randomTestGenerator.getRandomWord());
             ticket.setPrice(event.getTicketPrice());
             ticket.setUser(user);
             ticketRepository.put(ticket);

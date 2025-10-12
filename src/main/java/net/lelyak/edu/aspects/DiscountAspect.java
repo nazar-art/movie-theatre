@@ -24,7 +24,7 @@ public class DiscountAspect {
     @Autowired
     private AspectCounterDAO aspectCounterDAO;
 
-    private HashMap<IDiscountStrategy, Record> discountCounter = new HashMap<>();
+    private final Map<IDiscountStrategy, Record> discountCounter = new HashMap<>();
 
     public static class Record {
         long totalCount;
@@ -53,7 +53,7 @@ public class DiscountAspect {
             returning = "discount", argNames = "jp,user,event,date,discount")
     public void afterDiscountStrategyGetDiscount(JoinPoint jp, User user, Event event, Date date, double discount) {
 
-        Logger.debug("afterDiscountStrategyGetDiscount for " + jp.getTarget().getClass().getName());
+        Logger.info("afterDiscountStrategyGetDiscount for " + jp.getTarget().getClass().getName());
 
         if (discount != 0 && IDiscountStrategy.class.isInstance(jp.getTarget())) {
 
@@ -75,7 +75,7 @@ public class DiscountAspect {
         }
     }
 
-    public HashMap<IDiscountStrategy, Record> getDiscountCounter() {
+    public Map<IDiscountStrategy, Record> getDiscountCounter() {
         return discountCounter;
     }
 }

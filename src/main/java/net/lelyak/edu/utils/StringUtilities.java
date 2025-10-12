@@ -4,8 +4,6 @@ import java.util.Formatter;
 
 public final class StringUtilities {
 
-    public static final String NEW_LINE = System.getProperty("line.separator");
-
     private StringUtilities() {
     }
 
@@ -47,7 +45,7 @@ public final class StringUtilities {
 
         for (String option : options) {
             try (Formatter format = new Formatter()) {
-                sb.append(format.format(root, option).toString());
+                sb.append(format.format(root, option));
 
                 if (processedOption < optionsCount)
                     sb.append(separator);

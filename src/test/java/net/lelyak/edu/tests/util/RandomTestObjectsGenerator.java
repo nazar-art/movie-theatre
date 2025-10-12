@@ -3,6 +3,8 @@ package net.lelyak.edu.tests.util;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.enums.Rating;
 import net.lelyak.edu.entity.User;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,30 +19,26 @@ public class RandomTestObjectsGenerator {
     @Autowired
     private RandomDate randomDate;
 
-    @Autowired
-    private RandomString randomString;
-
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public Date getRandomDate() {
         return randomDate.get();
     }
 
     public String getRandomWord() {
-        return randomString.getWord();
+        return RandomStringUtils.randomAlphabetic(6);
     }
 
     public String getRandomSentence() {
-        return randomString.getSentence();
+        return RandomStringUtils.randomAlphabetic(10);
     }
 
     public Event randomEvent() {
         Event event = new Event();
         event.setAirDate(randomDate.get());
-        event.setName(randomString.getWord());
+        event.setName(getRandomWord());
         event.setTicketPrice(random.nextDouble());
         event.setEnumRating(Rating.values()[random.nextInt(3)]);
-
         return event;
     }
 
@@ -55,9 +53,8 @@ public class RandomTestObjectsGenerator {
     public User randomUser() {
         User user = new User();
         user.setBirthday(randomDate.get());
-        user.setName(randomString.getUCWord());
-        user.setEmail(randomString.getWord().trim().concat("@").concat(randomString.getWord().trim()));
-
+        user.setName(StringUtils.capitalize(getRandomWord()));
+        user.setEmail(getRandomWord().concat("@test.com"));
         return user;
     }
 

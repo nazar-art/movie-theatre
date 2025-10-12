@@ -14,13 +14,15 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 @Transactional
 public class UserServiceTest extends BaseTest {
 
     private List<Event> randomEvents() {
-        List<Event> testEvents = rtog.randomEventsList(5 + rtog.nextInt(5));
+        List<Event> testEvents = randomTestGenerator.randomEventsList(5 + randomTestGenerator.nextInt(5));
         for (Event event : testEvents) {
             event.setAuditorium(auditoriumService.getRandomAuditorium());
         }
@@ -29,37 +31,38 @@ public class UserServiceTest extends BaseTest {
     }
 
     private Event randomEvent() {
-        Event testEvent = rtog.randomEvent();
+        Event testEvent = randomTestGenerator.randomEvent();
         testEvent.setAuditorium(auditoriumService.getRandomAuditorium());
         eventRepository.put(testEvent);
         return testEvent;
     }
 
     private User randomUser() {
-        User testUser = rtog.randomUser();
+        User testUser = randomTestGenerator.randomUser();
         userRepository.put(testUser);
         return testUser;
     }
 
     @Test
     public void testA_SignIn() throws Exception {
-        User user = rtog.randomUser();
+        User user = randomTestGenerator.randomUser();
         userRepository.put(user);
 //        assertTrue(user.equals(userService.signIn(user.getName())));
         assertEquals(userService.signIn(user.getName()), user);
     }
 
     @Test
-    public void testB_Register() throws Exception {
-        User randomUser = rtog.randomUser();
+    public void testB_Register() {
+        User user = randomTestGenerator.randomUser();
 
-        User loadedUser = userService.register(randomUser.getName(), randomUser.getEmail(), randomUser.getBirthday());
+        User storedUser = userService.register(user.getName(), user.getEmail(), user.getBirthday());
 
-        Logger.debug(StringUtilities.appendStrings("testB_Register: randomUser=[%s], loadedUser=[%s]", randomUser, loadedUser));
-        assertTrue(randomUser.getName().compareTo(loadedUser.getName()) == 0
-                && randomUser.getEmail().compareTo(loadedUser.getEmail()) == 0
-                && randomUser.getId() == null && loadedUser.getId() != null
-        );
+        Logger.info(StringUtilities.appendStrings("testB_Register: user=[%s], storedUser=[%s]", user, storedUser));
+
+        assertEquals(storedUser.getName(), user.getName());
+        assertEquals(storedUser.getEmail(), user.getEmail());
+        assertNotNull(storedUser.getId());
+        assertNull(user.getId());
     }
 
     @Test
@@ -95,7 +98,7 @@ public class UserServiceTest extends BaseTest {
         List<Ticket> testTickets = new ArrayList<>();
         User testUser = randomUser();
 
-        for (int i = 0; i < 5 + rtog.nextInt(5); i++) {
+        for (int i = 0; i < 5 + randomTestGenerator.nextInt(5); i++) {
             Event randomEvent = randomEvent();
             testTickets.add(
                     userService.buyTicket(randomEvent,

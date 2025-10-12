@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public final class LocalDateTimeConverter {
-//	private static final String dateFormat = "dd/MM/yyyy";
 	private static final String dateFormat = "MM/dd/yyyy h:mm a";
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);;
 

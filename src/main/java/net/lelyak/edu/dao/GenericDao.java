@@ -4,7 +4,7 @@ import net.lelyak.edu.entity.BaseEntity;
 
 import java.util.Collection;
 
-public interface IGenericDao<ENTITY extends BaseEntity> {
+public interface GenericDao<ENTITY extends BaseEntity> {
 
     Long save(ENTITY entity);
 

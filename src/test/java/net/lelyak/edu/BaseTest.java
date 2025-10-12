@@ -9,11 +9,14 @@ import net.lelyak.edu.repository.TicketRepository;
 import net.lelyak.edu.repository.UserRepository;
 import net.lelyak.edu.service.*;
 import net.lelyak.edu.tests.util.RandomTestObjectsGenerator;
+import net.lelyak.edu.utils.Logger;
 import net.lelyak.edu.utils.TestNGListener;
 import net.lelyak.edu.utils.datafactory.GeneratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 @Listeners({TestNGListener.class,
@@ -49,10 +52,26 @@ public abstract class BaseTest extends AbstractTestNGSpringContextTests {
     @Autowired
     protected UserRepository userRepository;
 
-
     @Autowired
-    protected RandomTestObjectsGenerator rtog;
+    protected RandomTestObjectsGenerator randomTestGenerator;
 
-    protected GeneratorRepository generator = new GeneratorRepository();
+    protected GeneratorRepository testGenerator = new GeneratorRepository();
 
+    @BeforeMethod
+    public void setUp() {
+        clearAspectCounters();
+        Logger.info("clean up counters");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        clearAspectCounters();
+    }
+
+    private void clearAspectCounters() {
+        counterAspect.getCounterEventGetByName().clear();
+        counterAspect.getCounterEventGetTicketPrice().clear();
+        counterAspect.getCounterEventTicketBooked().clear();
+        discountAspect.getDiscountCounter().clear();
+    }
 }

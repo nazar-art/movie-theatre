@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 
 public class UserServiceTestCase extends BaseTest {
@@ -16,7 +17,7 @@ public class UserServiceTestCase extends BaseTest {
 
     @Test
     public void testGetUserByMail() throws Exception {
-        testUser = generator.getRandomUser();
+        testUser = testGenerator.getRandomUser();
 
         userService.register(testUser);
 
@@ -28,7 +29,7 @@ public class UserServiceTestCase extends BaseTest {
 
     @Test
     public void testUserById() throws Exception {
-        testUser = generator.getRandomUser();
+        testUser = testGenerator.getRandomUser();
         userService.register(testUser);
 
         User userById = userService.getById(testUser.getId());
@@ -39,7 +40,7 @@ public class UserServiceTestCase extends BaseTest {
 
     @Test
     public void testGetUserByName() throws Exception {
-        testUser = generator.getRandomUser();
+        testUser = testGenerator.getRandomUser();
         userService.register(testUser);
 
         User ron = userService.getByName(testUser.getName());
@@ -50,7 +51,7 @@ public class UserServiceTestCase extends BaseTest {
 
     @Test
     public void testRegisterAndRemoveNewUser() throws Exception {
-        testUser = generator.getRandomUser();
+        testUser = testGenerator.getRandomUser();
         userService.register(testUser);
 
         User createdUser = userService.getById(testUser.getId());
@@ -60,12 +61,12 @@ public class UserServiceTestCase extends BaseTest {
         assertEquals(createdUser.getRole(), testUser.getRole());
 
         userService.remove(testUser);
-        userService.getById(testUser.getId());
+        assertFalse(userRepository.isUserExist(testUser.getEmail()));
     }
 
     @Test
     public void testUserCount() throws Exception {
-        testUser = generator.getRandomUser();
+        testUser = testGenerator.getRandomUser();
 
         int countBeforeInsert = userService.getTotalUsersCount();
         userService.register(testUser, testUser.getBirthday());

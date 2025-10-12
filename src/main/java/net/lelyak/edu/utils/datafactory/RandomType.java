@@ -1,7 +1,6 @@
 package net.lelyak.edu.utils.datafactory;
 
 public enum RandomType {
-
     NUMERIC,
     NUMBER,
     STRING,

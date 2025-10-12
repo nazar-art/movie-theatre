@@ -14,7 +14,6 @@ public abstract class BaseEntity {
         super();
     }
 
-
     public String getName() {
         return name;
     }

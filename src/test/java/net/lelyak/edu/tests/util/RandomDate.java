@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class RandomDate {
     private final Date minDate, maxDate;
-    private final Random rnd = new Random(47);
+    private final Random random = new Random(47);
 
     public RandomDate(Date minDate, Date maxDate) {
         this.minDate = minDate;
@@ -13,9 +13,9 @@ public class RandomDate {
     }
 
     public Date get() {
-        long min = minDate.getTime(),
-                max = maxDate.getTime(),
-                milis = min + ((long) (rnd.nextDouble() * (max - min)));
-        return new Date(milis);
+        long min = minDate.getTime();
+        long max = maxDate.getTime();
+        long millis = min + ((long) (random.nextDouble() * (max - min)));
+        return new Date(millis);
     }
 }

@@ -22,9 +22,9 @@ import java.util.HashMap;
 @Aspect
 public class CounterAspect {
 
-    private HashMap<Event, Long> counterEventGetByName = new HashMap<>();
-    private HashMap<Event, Long> counterEventGetTicketPrice = new HashMap<>();
-    private HashMap<Event, Long> counterEventTicketBooked = new HashMap<>();
+    private final HashMap<Event, Long> counterEventGetByName = new HashMap<>();
+    private final HashMap<Event, Long> counterEventGetTicketPrice = new HashMap<>();
+    private final HashMap<Event, Long> counterEventTicketBooked = new HashMap<>();
 
     @Autowired
     private AspectCounterDAO aspectCounterDAO;
@@ -61,7 +61,7 @@ public class CounterAspect {
             counterEventGetByName.put(event, 1L);
         }
 
-        Logger.debug("afterEventGetByName from " + jp.getTarget().toString() + ", event: " + event);
+        Logger.info("afterEventGetByName from " + jp.getTarget().toString() + ", event: " + event);
     }
 
     @AfterReturning(
@@ -74,7 +74,7 @@ public class CounterAspect {
             counterEventGetTicketPrice.put(event, 1L);
         }
 
-        Logger.debug("afterEventGetTicketPrice  from " + jp.getTarget().toString() + ", event: " + event);
+        Logger.info("afterEventGetTicketPrice  from " + jp.getTarget().toString() + ", event: " + event);
     }
 
     @AfterReturning(
@@ -90,7 +90,7 @@ public class CounterAspect {
             counterEventTicketBooked.put(event, 1L);
         }
 
-        Logger.debug("afterEventTicketBooked  from " + jp.getTarget().toString() + ", event: " + event);
+        Logger.info("afterEventTicketBooked  from " + jp.getTarget().toString() + ", event: " + event);
     }
 
     public HashMap<Event, Long> getCounterEventGetByName() {

@@ -37,7 +37,7 @@ public class LuckyWinnerAspect {
             if (isUserLucky) {
                 // set ticket price to 0
                 ticket.setPrice(0D);
-                Logger.debug("Ticket price is set to: " + ticket.getPrice());
+                Logger.info("Ticket price is set to: " + ticket.getPrice());
             }
 
             joinPoint.proceed(new Object[]{user, ticket});

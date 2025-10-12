@@ -39,13 +39,13 @@ public class BookingController {
 	public String bookPlaceForEvent(
 			@PathVariable("id") long id,
 			@RequestParam("targetSeats") List<String> chosenSeatsStrings) {
-		Logger.debug("Chosen seats string: " + chosenSeatsStrings.toString());
+		Logger.info("Chosen seats string: " + chosenSeatsStrings.toString());
 
 		User customer = userService.getAll().get(0);
 		Event targetEvent = eventRepository.getById(id);
 
 		Long[] chosenSeats = new Long[chosenSeatsStrings.size()];
-		Logger.debug("Chosen seats string: " + Arrays.toString(chosenSeats));
+		Logger.info("Chosen seats string: " + Arrays.toString(chosenSeats));
 		for (int i = 0; i < chosenSeatsStrings.size(); i++) {
 			chosenSeats[i] = Long.parseLong(chosenSeatsStrings.get(i));
 		}

@@ -24,12 +24,12 @@ public class UserDAO extends BaseDAO<User> {
 
         MapSqlParameterSource parameters = new MapSqlParameterSource("email", email);
 
-        Logger.debug(StringUtilities.appendStrings("getByEmail( %s ), SQL : [%s] ", email, sql));
+        Logger.info(StringUtilities.appendStrings("getByEmail( %s ), SQL : [%s] ", email, sql));
 
         User user = getNamedParameterJdbcTemplate()
                 .queryForObject(sql, parameters, new BeanPropertyRowMapper<>(User.class));
 
-        Logger.debug(StringUtilities.appendStrings("getByEmail( %s ) : %s ", email, user.toString()));
+        Logger.info(StringUtilities.appendStrings("getByEmail( %s ) : %s ", email, user.toString()));
 
         return user;
     }

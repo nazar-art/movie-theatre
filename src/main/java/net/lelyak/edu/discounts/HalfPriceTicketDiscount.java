@@ -21,9 +21,10 @@ public class HalfPriceTicketDiscount implements IDiscountStrategy {
 
     @Override
     public double getDiscount(User user, Event event, Date date) {
-        Logger.debug("Every10TicketDiscountStrategy.getDiscount");
+        Logger.info("Every10TicketDiscountStrategy.getDiscount");
+
         List<Ticket> tickets = ticketService.getTicketsForUser(user);
-        Logger.debug("\ntickets = " + tickets);
+        Logger.info("\ntickets = " + tickets);
 
         if (tickets == null || tickets.isEmpty()) {
             System.out.format("Every10TicketDiscountStrategy.getDiscount: no tickets for user '%s', event '%s'\n",

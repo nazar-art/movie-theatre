@@ -1,6 +1,5 @@
 package net.lelyak.edu.utils.datafactory;
 
-
 import net.lelyak.edu.entity.enums.Rating;
 import org.apache.commons.lang.math.RandomUtils;
 import org.fluttercode.datafactory.impl.DataFactory;
@@ -11,26 +10,23 @@ import java.util.*;
 
 public class RandomDataSource {
 
-    private DataFactory dataFactory = new DataFactory();
-    private Map<String, String> storedData = new HashMap<String, String>();
-    private Random random = new Random();
-    private String characters = "qwertyuiopasdfghjklzxcvbnm";
+    private final DataFactory dataFactory = new DataFactory();
+    private final Map<String, String> storedData = new HashMap<>();
+    private final Random random = new Random();
+    private final String characters = "qwertyuiopasdfghjklzxcvbnm";
 
     public void fillEntity(Object entity) {
         if (entity != null) {
-            List<Field> allFields = new ArrayList<>();
 
             // add all class fields
             Class<?> aClass = entity.getClass();
             List<Field> fields = Arrays.asList(aClass.getDeclaredFields());
-            fields.forEach(allFields::add);
-//            allFields.addAll(fields);
+            List<Field> allFields = new ArrayList<>(fields);
 
             // add all super class fields
             if (aClass.getSuperclass() != null) {
                 List<Field> superFields = Arrays.asList(aClass.getSuperclass().getDeclaredFields());
-//                allFields.addAll(superFields);
-                superFields.forEach(allFields::add);
+                allFields.addAll(superFields);
             }
 
             for (Field field : allFields) {

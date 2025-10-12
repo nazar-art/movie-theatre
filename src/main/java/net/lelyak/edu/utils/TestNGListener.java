@@ -1,6 +1,12 @@
 package net.lelyak.edu.utils;
 
-import org.testng.*;
+import org.testng.IInvokedMethod;
+import org.testng.IInvokedMethodListener;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +18,7 @@ public final class TestNGListener extends TestListenerAdapter implements IInvoke
 
     private static List<String> exceptions;
     private String currentMessage = "";
+    private boolean firstAttmptKey = true;
 
     /**
      * Test class
@@ -100,8 +107,6 @@ public final class TestNGListener extends TestListenerAdapter implements IInvoke
         }
     }
 
-    private boolean firstAttmptKey = true;
-
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult iTestResult) {
         /*int result = testResult.getStatus();
@@ -161,12 +166,12 @@ public final class TestNGListener extends TestListenerAdapter implements IInvoke
 
     @Override
     public void onStart(ISuite suite) {
-//        Logger.info(buildMessage(Logger.PREFIX_TEST_SUITE_STARTED, suite.getName()));
+        Logger.info(buildMessage(Logger.PREFIX_TEST_SUITE_STARTED, suite.getName()));
     }
 
     @Override
     public void onFinish(ISuite suite) {
-//        Logger.info(buildMessage(Logger.PREFIX_TEST_SUITE_FINISHED, suite.getName()));
+        Logger.info(buildMessage(Logger.PREFIX_TEST_SUITE_FINISHED, suite.getName()));
     }
 
     private List<String> exceptionsList() {

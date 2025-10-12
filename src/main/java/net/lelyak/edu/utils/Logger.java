@@ -1,6 +1,5 @@
 package net.lelyak.edu.utils;
 
-
 import org.apache.log4j.LogManager;
 
 import java.text.MessageFormat;
@@ -120,9 +119,9 @@ public final class Logger {
     }
 
     public static void error(Exception e) {
-    	LOGGER.fatal(e.getMessage());
+        LOGGER.fatal(e.getMessage());
     }
-    
+
     public static void error(String msg) {
         LOGGER.error(msg);
     }
@@ -140,10 +139,6 @@ public final class Logger {
     }
 
     private static String buildOperationMessage(String msg) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(PREFIX_OPERATION);
-        builder.append(" - ");
-        builder.append(msg);
-        return builder.toString();
+        return PREFIX_OPERATION + " - " + msg;
     }
 }
