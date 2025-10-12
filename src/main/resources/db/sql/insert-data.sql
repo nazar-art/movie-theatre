@@ -51,8 +51,8 @@ INSERT INTO t_event (name, airDate, ticketPrice, rating, auditorium_id)
 VALUES ('Mad Max: Furry road', '2016-02-28', 90.0, 'LOW', 3);
 INSERT INTO t_event (name, airDate, ticketPrice, rating, auditorium_id)
 VALUES ('Tow Waits tribute concert', '2016-02-28', 110.0, 'HIGH', 4);
---INSERT INTO t_event (name, airDate, ticketPrice, rating, auditorium_id)
---VALUES ('Fredie Mercurry tribute concert', '2016-02-28', 200.0, 'HIGH', 1);
+INSERT INTO t_event (name, airDate, ticketPrice, rating, auditorium_id)
+VALUES ('Fredie Mercurry tribute concert', '2016-02-28', 200.0, 'HIGH', 1);
 
 
 --------------------------

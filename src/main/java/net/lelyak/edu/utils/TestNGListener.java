@@ -124,7 +124,6 @@ public final class TestNGListener extends TestListenerAdapter implements IInvoke
                 Logger.debug(currentMessage);
             }
         }
-
     }
 
     public String buildMessage(String prefix, String msg) {
@@ -132,7 +131,6 @@ public final class TestNGListener extends TestListenerAdapter implements IInvoke
         builder.append(prefix);
         builder.append(" - ");
         builder.append(msg);
-
         return builder.toString();
     }
 

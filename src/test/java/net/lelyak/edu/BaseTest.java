@@ -22,9 +22,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
-@Listeners({TestNGListener.class,
+@Listeners({
+    TestNGListener.class,
     org.uncommons.reportng.HTMLReporter.class,
-    org.uncommons.reportng.JUnitXMLReporter.class})
+    org.uncommons.reportng.JUnitXMLReporter.class
+})
 @ContextConfiguration(locations = "file:**/spring-context.xml")
 public abstract class BaseTest extends AbstractTestNGSpringContextTests {
 
