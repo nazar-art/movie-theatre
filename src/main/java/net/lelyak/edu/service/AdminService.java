@@ -7,7 +7,7 @@ import net.lelyak.edu.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Allows for admins
@@ -25,11 +25,11 @@ public class AdminService {
         eventRepository.put(event);
     }
 
-    public Collection<Event> listEvents() {
+    public List<Event> listEvents() {
         return eventRepository.getAll();
     }
 
-    public Collection<Ticket> listTickets() {
+    public List<Ticket> listTickets() {
         return bookingRepository.getAll();
     }
 

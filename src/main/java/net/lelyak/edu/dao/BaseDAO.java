@@ -1,8 +1,8 @@
 package net.lelyak.edu.dao;
 
 import net.lelyak.edu.entity.BaseEntity;
-import net.lelyak.edu.utils.Logger;
 import net.lelyak.edu.utils.StringUtilities;
+import org.apache.log4j.LogManager;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -13,6 +13,8 @@ import org.springframework.jdbc.support.KeyHolder;
 import java.util.List;
 
 public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJdbcDaoSupport implements GenericDao<ENTITY> {
+
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(BaseDAO.class);
 
     private final String tableName;
     private final Class<ENTITY> entityClass;
@@ -51,8 +53,8 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
 
         this.insertSQL = sbInsertSQL.toString();
         this.updateSQL = sbUpdateSQL.toString();
-        Logger.info("BaseDAO(), insertSQL: [" + insertSQL + "]");
-        Logger.info("BaseDAO(), updateSQL: [" + updateSQL + "]");
+        LOGGER.info("BaseDAO(), insertSQL: [" + insertSQL + "]");
+        LOGGER.info("BaseDAO(), updateSQL: [" + updateSQL + "]");
     }
 
     @Override
@@ -94,7 +96,7 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
     @Override
     public void update(ENTITY entity) {
         getNamedParameterJdbcTemplate().update(updateSQL, new BeanPropertySqlParameterSource(entity));
-        Logger.info("Update entity: " + entity);
+        LOGGER.info("Update entity: " + entity);
     }
 
     @Override
@@ -105,7 +107,7 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
             new MapSqlParameterSource("id", entity.getId())
         );
 
-        Logger.info(StringUtilities
+        LOGGER.info(StringUtilities
             .appendStrings("Delete %d %s rows deleted: %d", entity.getId(), entity.getName(), rowCount));
     }
 
@@ -127,7 +129,7 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
         KeyHolder keyHolder = new GeneratedKeyHolder();
         getNamedParameterJdbcTemplate().update(insertSQL, new BeanPropertySqlParameterSource(entity), keyHolder);
         entity.setId(keyHolder.getKey().longValue());
-        Logger.info("Insert user: " + entity.toString());
+        LOGGER.info("Insert: " + entity.getClass().getSimpleName() + " " + entity);
         return entity.getId();
     }
 
@@ -141,7 +143,7 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
 
     protected boolean existsByEmail(String email) {
         String sql = StringUtilities.appendStrings("SELECT COUNT(*) FROM %s WHERE email=:email", tableName);
-        Logger.info("QUERY is: " + sql);
+        LOGGER.info("QUERY is: " + sql);
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("email", email);
         long rowCount = getNamedParameterJdbcTemplate().queryForObject(sql, parameterSource, long.class);
         return rowCount > 0;

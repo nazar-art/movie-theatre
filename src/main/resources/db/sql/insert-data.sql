@@ -85,8 +85,6 @@ VALUES ('44', 250.0, '2016-04-08', 4, 7);
 INSERT INTO t_ticket (name, price, onDate, event_id, user_id)
 VALUES ('80', 250.0, '2016-04-08', 4, 7);
 
-
-
 -------------------------------
 -- Populate t_useraccount table
 -------------------------------

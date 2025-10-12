@@ -42,8 +42,6 @@ public abstract class AbstractPdfView extends AbstractView {
 
         // Flush to HTTP response.
         writeToResponse(response, baos);
-
-
     }
 
     protected void prepareWriter(Map<String, Object> model, PdfWriter writer, HttpServletRequest request)
@@ -60,6 +58,4 @@ public abstract class AbstractPdfView extends AbstractView {
 
     protected abstract void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
                                              HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-
 }

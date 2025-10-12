@@ -37,7 +37,6 @@ public class AuthController {
         return "login";
     }
 
-
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String openRegisterPage(Model model) {
         model.addAttribute("newUser", new User());
@@ -51,14 +50,12 @@ public class AuthController {
         return "/login";
     }
 
-
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String createUser(@ModelAttribute("newUser") User user) {
         if (userService.isUserExist(user)) {
             return "redirect:/register?userExist";
         }
 
-//        List<UserRole> roles = new ArrayList<>();
         if (user.getRole() == null) {
             user.setRole(UserRole.REGISTERED_USER.toString());
         } else {

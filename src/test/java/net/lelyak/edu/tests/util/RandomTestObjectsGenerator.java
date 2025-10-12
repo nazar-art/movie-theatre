@@ -4,57 +4,76 @@ import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.User;
 import net.lelyak.edu.entity.enums.Rating;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.LogManager;
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Component
 public class RandomTestObjectsGenerator {
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(RandomTestObjectsGenerator.class);
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
 
     @Autowired
-    private RandomDate randomDate;
+    private DataFactory dataFactory;
 
     private final Random random = new Random();
 
     public Date getRandomDate() {
-        return randomDate.get();
+        Date date;
+        try {
+            date = DATE_FORMAT.parse("01.01.1980");
+        } catch (ParseException e) {
+            LOGGER.error("error during date parsing", e);
+            throw new RuntimeException(e);
+        }
+        return dataFactory.getDate(date, 2, 560);
     }
 
     public String getRandomWord() {
-        return RandomStringUtils.randomAlphabetic(6);
+        return dataFactory.getRandomWord();
     }
 
     public String getRandomSentence() {
-        return RandomStringUtils.randomAlphabetic(10);
+        return dataFactory.getRandomText(2, 6);
     }
 
     public Event randomEvent() {
         Event event = new Event();
-        event.setAirDate(randomDate.get());
-        event.setName(getRandomWord());
+        event.setAirDate(getRandomDate());
+        event.setName(RandomStringUtils.randomAlphabetic(10));
         event.setTicketPrice(random.nextDouble());
         event.setEnumRating(Rating.values()[random.nextInt(3)]);
         return event;
     }
 
-    public List<Event> randomEventsList(int count) {
-        List<Event> testEvents = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            testEvents.add(randomEvent());
+    public List<Event> randomEventsList(int size) {
+        Set<String> uniqueNames = new HashSet<>();
+        List<Event> events = new ArrayList<>();
+        while (events.size() < size) {
+            Event event = randomEvent();
+            if (uniqueNames.add(event.getName())) {
+                events.add(event);
+            }
         }
-        return testEvents;
+        return events;
     }
 
     public User randomUser() {
         User user = new User();
-        user.setBirthday(randomDate.get());
-        user.setName(StringUtils.capitalize(getRandomWord()));
-        user.setEmail(getRandomWord().concat("@test.com"));
+        user.setBirthday(dataFactory.getBirthDate());
+        user.setName(dataFactory.getFirstName());
+        user.setEmail(dataFactory.getEmailAddress());
         return user;
     }
 
@@ -66,16 +85,7 @@ public class RandomTestObjectsGenerator {
         return testUsers;
     }
 
-    public int nextInt() {
-        return random.nextInt();
-    }
-
     public int nextInt(int bound) {
-        return random.nextInt(bound);
+        return dataFactory.getNumberUpTo(bound);
     }
-
-    public long nextLong() {
-        return random.nextLong();
-    }
-
 }

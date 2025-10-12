@@ -16,7 +16,7 @@ public class UserServiceTestCase extends BaseTest {
     private User testUser;
 
     @Test
-    public void testGetUserByMail() throws Exception {
+    public void testGetUserByMail() {
         testUser = testGenerator.getRandomUser();
 
         userService.register(testUser);
@@ -28,7 +28,7 @@ public class UserServiceTestCase extends BaseTest {
     }
 
     @Test
-    public void testUserById() throws Exception {
+    public void testUserById() {
         testUser = testGenerator.getRandomUser();
         userService.register(testUser);
 
@@ -39,7 +39,7 @@ public class UserServiceTestCase extends BaseTest {
     }
 
     @Test
-    public void testGetUserByName() throws Exception {
+    public void testGetUserByName() {
         testUser = testGenerator.getRandomUser();
         userService.register(testUser);
 
@@ -50,7 +50,7 @@ public class UserServiceTestCase extends BaseTest {
     }
 
     @Test
-    public void testRegisterAndRemoveNewUser() throws Exception {
+    public void testRegisterAndRemoveNewUser() {
         testUser = testGenerator.getRandomUser();
         userService.register(testUser);
 
@@ -65,7 +65,7 @@ public class UserServiceTestCase extends BaseTest {
     }
 
     @Test
-    public void testUserCount() throws Exception {
+    public void testUserCount() {
         testUser = testGenerator.getRandomUser();
 
         int countBeforeInsert = userService.getTotalUsersCount();
@@ -79,11 +79,10 @@ public class UserServiceTestCase extends BaseTest {
     }
 
     @Test
-    public void testGetUserBookedTickets() throws Exception {
+    public void testGetUserBookedTickets() {
         int userIndex = 3;
         User testUser = userService.getById(userIndex);
 
-//        Set<Ticket> bookedTickets = userService.getBookedTickets(testUser);
         List<Ticket> ticketsForUser = ticketService.getTicketsForUser(testUser);
         assertNotNull(ticketsForUser, "booked tickets for user can not be null");
     }

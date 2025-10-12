@@ -23,7 +23,6 @@ public final class StringUtilities {
         return blr.toString();
     }
 
-
     public static boolean textFound(String searchedValue, String[] options) {
         boolean result = false;
 
@@ -35,7 +34,6 @@ public final class StringUtilities {
         }
         return result;
     }
-
 
     public static String appendStringsWithSeparator(String root, String separator, String... options) {
 

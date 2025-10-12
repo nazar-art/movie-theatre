@@ -26,12 +26,10 @@ public class AuditoriumService {
     @Autowired
     private AuditoriumRepository auditoriumRepository;
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public List<Auditorium> getAuditoriums() {
-        ArrayList<Auditorium> auditoriums = new ArrayList<>();
-        auditoriums.addAll(this.auditoriumRepository.getAll());
-        return auditoriums;
+        return new ArrayList<>(this.auditoriumRepository.getAll());
     }
 
     public int getSeatsNumber(Auditorium auditorium) {

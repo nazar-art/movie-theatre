@@ -13,7 +13,6 @@ import net.lelyak.edu.service.DiscountService;
 import net.lelyak.edu.service.TicketService;
 import net.lelyak.edu.service.UserService;
 import net.lelyak.edu.tests.util.RandomTestObjectsGenerator;
-import net.lelyak.edu.utils.Logger;
 import net.lelyak.edu.utils.TestNGListener;
 import net.lelyak.edu.utils.datafactory.GeneratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +63,6 @@ public abstract class BaseTest extends AbstractTestNGSpringContextTests {
     @BeforeMethod
     public void setUp() {
         clearAspectCounters();
-        Logger.info("clean up counters");
     }
 
     @AfterMethod

@@ -3,7 +3,7 @@ package net.lelyak.edu.aspects;
 import net.lelyak.edu.dao.impl.AspectCounterDAO;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.Ticket;
-import net.lelyak.edu.utils.Logger;
+import org.apache.log4j.LogManager;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,6 +21,8 @@ import java.util.HashMap;
  */
 @Aspect
 public class CounterAspect {
+
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(CounterAspect.class);
 
     private final HashMap<Event, Long> counterEventGetByName = new HashMap<>();
     private final HashMap<Event, Long> counterEventGetTicketPrice = new HashMap<>();
@@ -61,7 +63,7 @@ public class CounterAspect {
             counterEventGetByName.put(event, 1L);
         }
 
-        Logger.info("afterEventGetByName from " + jp.getTarget().toString() + ", event: " + event);
+        LOGGER.info("afterEventGetByName from " + jp.getTarget().toString() + ", event: " + event);
     }
 
     @AfterReturning(
@@ -74,7 +76,7 @@ public class CounterAspect {
             counterEventGetTicketPrice.put(event, 1L);
         }
 
-        Logger.info("afterEventGetTicketPrice  from " + jp.getTarget().toString() + ", event: " + event);
+        LOGGER.info("afterEventGetTicketPrice  from " + jp.getTarget().toString() + ", event: " + event);
     }
 
     @AfterReturning(
@@ -90,7 +92,7 @@ public class CounterAspect {
             counterEventTicketBooked.put(event, 1L);
         }
 
-        Logger.info("afterEventTicketBooked  from " + jp.getTarget().toString() + ", event: " + event);
+        LOGGER.info("afterEventTicketBooked  from " + jp.getTarget().toString() + ", event: " + event);
     }
 
     public HashMap<Event, Long> getCounterEventGetByName() {

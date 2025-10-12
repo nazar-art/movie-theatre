@@ -2,7 +2,7 @@ package net.lelyak.edu.aspects;
 
 import net.lelyak.edu.entity.Ticket;
 import net.lelyak.edu.entity.User;
-import net.lelyak.edu.utils.Logger;
+import org.apache.log4j.LogManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,6 +18,8 @@ import java.lang.reflect.Method;
  */
 @Aspect
 public class LuckyWinnerAspect {
+
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(LuckyWinnerAspect.class);
 
     @Pointcut("execution(* * ..BookingService.bookTicket(..))")
     public void accessEventTicketBooking() {
@@ -37,12 +39,12 @@ public class LuckyWinnerAspect {
             if (isUserLucky) {
                 // set ticket price to 0
                 ticket.setPrice(0D);
-                Logger.info("Ticket price is set to: " + ticket.getPrice());
+                LOGGER.info("Ticket price is set to: " + ticket.getPrice());
             }
 
             joinPoint.proceed(new Object[]{user, ticket});
         } catch (Throwable throwable) {
-            Logger.error("Exception during checkLucky user: " + throwable.getMessage());
+            LOGGER.error("Exception during checkLucky user: " + throwable.getMessage());
         }
     }
 

@@ -95,4 +95,8 @@ public final class GeneratorRepository {
         Logger.info("GeneratorRepository.assignRandomTicketToUserAndEvent: " + ticket);
         return ticket;
     }
+
+    public String getRandomNumeric() {
+        return randomDataSource.getNumeric(1, 4);
+    }
 }

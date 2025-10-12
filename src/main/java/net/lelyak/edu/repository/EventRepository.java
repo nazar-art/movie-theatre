@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toSet;
 
 public class EventRepository extends BaseRepository<Event, EventDAO> {
 
@@ -17,7 +21,6 @@ public class EventRepository extends BaseRepository<Event, EventDAO> {
 
     @Override
     public long put(Event entity) {
-        auditoriumRepository.put(entity.getAuditorium());
         return super.put(entity);
     }
 
@@ -32,12 +35,17 @@ public class EventRepository extends BaseRepository<Event, EventDAO> {
     }
 
     @Override
-    public Collection<Event> getAll() {
+    public List<Event> getAll() {
         return super.getAll();
     }
 
     @Override
     public void putAll(Collection<Event> entities) {
+        entities.stream()
+            .map(Event::getAuditorium)
+            .filter(Objects::nonNull)
+            .filter(a -> a.getId() != null)
+            .forEach(auditoriumRepository::put);
         super.putAll(entities);
     }
 
@@ -51,11 +59,12 @@ public class EventRepository extends BaseRepository<Event, EventDAO> {
     }
 
     private Event saveEventAuditorium(Event event) {
-        if (event != null) {
-            if (event.getAuditorium() != null) {
-                auditoriumRepository.put(event.getAuditorium());
-                event.setAuditorium_id(event.getAuditorium().getId());
+        if (event != null && event.getAuditorium() != null) {
+            Auditorium auditorium = event.getAuditorium();
+            if (auditorium.getId() == null) {
+                auditoriumRepository.put(auditorium);
             }
+            event.setAuditorium_id(event.getAuditorium().getId());
         }
         return event;
     }
@@ -70,17 +79,27 @@ public class EventRepository extends BaseRepository<Event, EventDAO> {
         return initEventAuditorium(entity);
     }
 
-    public Collection<Event> getForDateRange(Date from, Date to) {
+    public List<Event> getForDateRange(Date from, Date to) {
         return getDao().getAll().stream()
             .filter(e -> e.getAirDate().after(from) && e.getAirDate().before(to))
             .collect(Collectors.toList());
     }
 
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
-        event.setAuditorium(auditorium);
+        if (event != null && auditorium != null) {
+            if (auditorium.getId() == null) {
+                auditoriumRepository.put(auditorium);
+            }
+            event.setAuditorium(auditorium);
+            event.setAuditorium_id(auditorium.getId());
+
+            if (date != null && !event.getAirDate().after(date)) {
+                throw new IllegalArgumentException("Event airDate must be after assignment date: " + date);
+            }
+        }
     }
 
-    public Collection<Event> getNextEvents(Date to) {
+    public List<Event> getNextEvents(Date to) {
         Date now = new Date();
         return getDao().getAll().stream()
             .filter(e -> e.getAirDate().before(to) && e.getAirDate().after(now))

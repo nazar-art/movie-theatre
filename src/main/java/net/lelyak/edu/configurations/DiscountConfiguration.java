@@ -1,8 +1,8 @@
 package net.lelyak.edu.configurations;
 
 import net.lelyak.edu.discounts.BirthdayDiscount;
-import net.lelyak.edu.discounts.HalfPriceTicketDiscount;
 import net.lelyak.edu.discounts.DiscountStrategy;
+import net.lelyak.edu.discounts.HalfPriceTicketDiscount;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

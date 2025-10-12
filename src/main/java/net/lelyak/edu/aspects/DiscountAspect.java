@@ -4,7 +4,7 @@ import net.lelyak.edu.dao.impl.AspectCounterDAO;
 import net.lelyak.edu.discounts.DiscountStrategy;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.User;
-import net.lelyak.edu.utils.Logger;
+import org.apache.log4j.LogManager;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,6 +20,8 @@ import java.util.Map;
  */
 @Aspect
 public class DiscountAspect {
+
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(DiscountAspect.class);
 
     @Autowired
     private AspectCounterDAO aspectCounterDAO;
@@ -53,7 +55,7 @@ public class DiscountAspect {
         returning = "discount", argNames = "jp,user,event,date,discount")
     public void afterDiscountStrategyGetDiscount(JoinPoint jp, User user, Event event, Date date, double discount) {
 
-        Logger.info("afterDiscountStrategyGetDiscount for " + jp.getTarget().getClass().getName());
+        LOGGER.info("afterDiscountStrategyGetDiscount for " + jp.getTarget().getClass().getName());
 
         if (discount != 0 && DiscountStrategy.class.isInstance(jp.getTarget())) {
 

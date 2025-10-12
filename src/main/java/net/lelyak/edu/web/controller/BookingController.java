@@ -34,7 +34,6 @@ public class BookingController {
     @Autowired
     private EventRepository eventRepository;
 
-
     @RequestMapping(value = "/book/{id}", method = RequestMethod.POST)
     public String bookPlaceForEvent(
         @PathVariable("id") long id,

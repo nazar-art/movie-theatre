@@ -4,8 +4,8 @@ import net.lelyak.edu.BaseTest;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.Ticket;
 import net.lelyak.edu.entity.User;
-import net.lelyak.edu.utils.Logger;
 import net.lelyak.edu.utils.StringUtilities;
+import org.apache.log4j.LogManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
@@ -20,6 +20,8 @@ import static org.testng.Assert.assertTrue;
 
 @Transactional
 public class UserServiceTest extends BaseTest {
+
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(UserServiceTest.class);
 
     private List<Event> randomEvents() {
         List<Event> testEvents = randomTestGenerator.randomEventsList(5 + randomTestGenerator.nextInt(5));
@@ -44,10 +46,9 @@ public class UserServiceTest extends BaseTest {
     }
 
     @Test
-    public void testA_SignIn() throws Exception {
+    public void testA_SignIn() {
         User user = randomTestGenerator.randomUser();
         userRepository.put(user);
-//        assertTrue(user.equals(userService.signIn(user.getName())));
         assertEquals(userService.signIn(user.getName()), user);
     }
 
@@ -57,7 +58,7 @@ public class UserServiceTest extends BaseTest {
 
         User storedUser = userService.register(user.getName(), user.getEmail(), user.getBirthday());
 
-        Logger.info(StringUtilities.appendStrings("testB_Register: user=[%s], storedUser=[%s]", user, storedUser));
+        LOGGER.info(StringUtilities.appendStrings("testB_Register: user=[%s], storedUser=[%s]", user, storedUser));
 
         assertEquals(storedUser.getName(), user.getName());
         assertEquals(storedUser.getEmail(), user.getEmail());
@@ -66,18 +67,18 @@ public class UserServiceTest extends BaseTest {
     }
 
     @Test
-    public void testC_ViewEvents() throws Exception {
+    public void testC_ViewEvents() {
         Collection<Event> testEvents = randomEvents();
 
         Collection<Event> loadedEvents = userService.viewEvents();
 
-        Logger.debug(StringUtilities.appendStrings("testC_ViewEvents, testEvents=[%s]", testEvents));
-        Logger.debug(StringUtilities.appendStrings("testC_ViewEvents, loadedEvents=[%s]", loadedEvents));
+        LOGGER.debug(StringUtilities.appendStrings("testC_ViewEvents, testEvents=[%s]", testEvents));
+        LOGGER.debug(StringUtilities.appendStrings("testC_ViewEvents, loadedEvents=[%s]", loadedEvents));
         assertTrue(loadedEvents.containsAll(testEvents));
     }
 
     @Test
-    public void testD_BuyTicket() throws Exception {
+    public void testD_BuyTicket() {
         Event testEvent = randomEvent();
         User testUser = randomUser();
 
@@ -94,7 +95,7 @@ public class UserServiceTest extends BaseTest {
     }
 
     @Test
-    public void testE_ListTickets() throws Exception {
+    public void testE_ListTickets() {
         List<Ticket> testTickets = new ArrayList<>();
         User testUser = randomUser();
 
@@ -113,15 +114,15 @@ public class UserServiceTest extends BaseTest {
     }
 
     @Test
-    public void testF_GetPrice() throws Exception {
+    public void testF_GetPrice() {
         Event testEvent1 = randomEvent();
         User testUser1 = randomUser();
 
         double event1Price = testEvent1.getTicketPrice();
         double userPrice = userService.getPrice(testEvent1, testEvent1.getAirDate(), testUser1);
 
-        Logger.info("event price: " + event1Price);
-        Logger.info("user price: " + userPrice);
+        LOGGER.info("event price: " + event1Price);
+        LOGGER.info("user price: " + userPrice);
         assertEquals(event1Price, userPrice, "prices is not equal");
 
         //BirthdayDiscount

@@ -11,7 +11,6 @@ public final class LocalDateConverter {
         if (source == null || source.isEmpty()) {
             return null;
         }
-
         return LocalDate.parse(source, formatter);
     }
 }

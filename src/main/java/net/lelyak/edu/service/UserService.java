@@ -30,7 +30,6 @@ public class UserService {
     @Autowired
     private TicketService ticketService;
 
-
     public long register(User user) {
         return userRepository.put(user);
     }

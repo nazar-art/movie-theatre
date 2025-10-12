@@ -3,52 +3,52 @@ package net.lelyak.edu.tests.aspects;
 import net.lelyak.edu.BaseTest;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.User;
-import net.lelyak.edu.utils.Logger;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.log4j.LogManager;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
 public class CounterAspectTestCase extends BaseTest {
 
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(CounterAspectTestCase.class);
+
     @Test
     public void testAfterEventGetByName() {
         Map<Event, Long> testEventCounts = randomEventsMap();
-        eventRepository.putAll(testEventCounts.keySet());
 
-        Logger.info("\n================== testAfterEventGetByName: ==================");
-        Logger.info("\n testEventCounts: ");
+        LOGGER.info("\n================== testAfterEventGetByName: ==================");
+        LOGGER.info("\n testEventCounts: ");
 
         for (Event event : testEventCounts.keySet()) {
-            Logger.info("Event getByName for " + event.toString());
+            LOGGER.info("Event getByName for " + event.toString());
             for (int i = 0; i < testEventCounts.get(event); i++) {
-                Logger.debug(eventRepository.getByName(event.getName()).equals(event) ? " + " : " - ");
+                LOGGER.info(eventRepository.getByName(event.getName()).equals(event) ? " + " : " - ");
             }
-            Logger.debug("");
+            LOGGER.debug("");
         }
 
-        HashMap<Event, Long> counterAspectEventGetByName = counterAspect.getCounterEventGetByName();
+        Map<Event, Long> counterAspectEventGetByName = counterAspect.getCounterEventGetByName();
         assertEquals(counterAspectEventGetByName, testEventCounts);
     }
 
     @Test
     public void testAfterEventGetTicketPrice() {
         Map<Event, Long> testEventCounts = randomEventsMap();
-
         User user = randomUser();
 
-        Logger.info("\n================== testAfterEventGetTicketPrice: ==================");
-        Logger.info("\n testEventCounts: ");
+        LOGGER.info("\n================== testAfterEventGetTicketPrice: ==================");
+        LOGGER.info("\n testEventCounts: ");
 
         for (Event event : testEventCounts.keySet()) {
-            Logger.debug("Event " + event.getName());
+            LOGGER.debug("Event " + event.getName());
             for (int i = 0; i < testEventCounts.get(event); i++) {
-                Logger.info(" " + ticketService.getTicketPrice(event, event.getAirDate(), user) + " ");
+                LOGGER.info(" " + ticketService.getTicketPrice(event, event.getAirDate(), user) + " ");
             }
-            Logger.debug("\n");
+            LOGGER.debug("\n");
         }
 
         Map<Event, Long> counterAspectEventGetTicketPrice = counterAspect.getCounterEventGetTicketPrice();
@@ -60,15 +60,15 @@ public class CounterAspectTestCase extends BaseTest {
         Map<Event, Long> testEventCounts = randomEventsMap();
         User user = randomUser();
 
-        Logger.info("\n==================  testAfterEventTicketBooked:================== ");
-        Logger.info(" testEventCounts: ");
+        LOGGER.info("\n==================  testAfterEventTicketBooked:================== ");
+        LOGGER.info(" testEventCounts: ");
         for (Event event : testEventCounts.keySet()) {
 
             for (int i = 0; i < testEventCounts.get(event); i++) {
-                Logger.info("Ticket for event '" + event.getName()
+                LOGGER.info("Ticket for event '" + event.getName()
                     + "' booked = " + ticketService.bookTicket(event,
                     randomTestGenerator.getRandomDate(),
-                    RandomStringUtils.randomNumeric(4),
+                    testGenerator.getRandomNumeric(),
                     user));
             }
         }
@@ -83,13 +83,13 @@ public class CounterAspectTestCase extends BaseTest {
     }
 
     private Map<Event, Long> randomEventsMap() {
+        List<Event> events = randomTestGenerator.randomEventsList(5 + randomTestGenerator.nextInt(5));
         Map<Event, Long> testEventCounts = new HashMap<>();
-        for (Event e : randomTestGenerator.randomEventsList(5 + randomTestGenerator.nextInt(5))) {
+        for (Event e : events) {
             e.setAuditorium(auditoriumService.getRandomAuditorium());
             eventRepository.put(e);
-            testEventCounts.put(e, (long) (5 + randomTestGenerator.nextInt(5)));
+            testEventCounts.put(e, testEventCounts.getOrDefault(e, 0L) + 1L);
         }
-        eventRepository.putAll(testEventCounts.keySet());
         return testEventCounts;
     }
 }

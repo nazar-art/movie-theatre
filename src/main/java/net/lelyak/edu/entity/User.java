@@ -28,8 +28,6 @@ public class User extends BaseEntity {
     @InjectRandomData(type = RandomType.ROLE)
     private String role;
 
-    //    @InjectRandomData(type = RandomType.ROLE)
-//    private List<UserRole> roles;
     @XmlAttribute
     private boolean enabled;
 
@@ -72,14 +70,6 @@ public class User extends BaseEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    /*public List<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<UserRole> roles) {
-        this.roles = roles;
-    }*/
 
     public boolean isEnabled() {
         return enabled;

@@ -4,8 +4,8 @@ import net.lelyak.edu.BaseTest;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.Ticket;
 import net.lelyak.edu.entity.User;
-import net.lelyak.edu.utils.Logger;
 import net.lelyak.edu.utils.StringUtilities;
+import org.apache.log4j.LogManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
@@ -19,7 +19,9 @@ import static org.testng.Assert.assertTrue;
 @Transactional
 public class AdminServiceTestCase extends BaseTest {
 
-    private Random random = new Random();
+    private static final org.apache.log4j.Logger LOGGER = LogManager.getLogger(AdminServiceTestCase.class);
+
+    private final Random random = new Random();
 
     private List<Event> randomEvents() {
         List<Event> testEvents = randomTestGenerator.randomEventsList(5 + random.nextInt(10));
@@ -37,9 +39,9 @@ public class AdminServiceTestCase extends BaseTest {
             adminService.enterEvent(event);
         }
         loadedEvents = adminService.listEvents();
-        Logger.debug("============== testEnterEvent ==============================");
+        LOGGER.debug("============== testEnterEvent ==============================");
         for (Event event : loadedEvents) {
-            Logger.debug(StringUtilities.appendStrings(" testEnterEvent %s", event));
+            LOGGER.debug(StringUtilities.appendStrings(" testEnterEvent %s", event));
         }
 
         assertTrue(loadedEvents.containsAll(testEvents), "doesn't contains all events");
@@ -72,9 +74,9 @@ public class AdminServiceTestCase extends BaseTest {
         ticketRepositoryTickets = ticketRepository.getAll();
         adminServiceTickets = adminService.listTickets();
 
-        Logger.debug("============== testListTickets ==============================");
+        LOGGER.debug("============== testListTickets ==============================");
         for (Ticket ticket : adminServiceTickets) {
-            Logger.debug(StringUtilities.appendStrings("testListTickets : %s", ticket));
+            LOGGER.debug(StringUtilities.appendStrings("testListTickets : %s", ticket));
         }
 
         assertTrue(adminServiceTickets.containsAll(ticketRepositoryTickets)

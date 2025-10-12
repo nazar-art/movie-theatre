@@ -11,6 +11,7 @@ public class Auditorium extends BaseEntity {
 
     @XmlAttribute
     private Integer seats;
+
     @XmlAttribute
     private String vip;
 
@@ -33,7 +34,7 @@ public class Auditorium extends BaseEntity {
     @Override
     public String toString() {
         return "Auditorium{" +
-            ", seats=" + seats +
+            "seats=" + seats +
             ", vip=" + vip +
             '}';
     }
