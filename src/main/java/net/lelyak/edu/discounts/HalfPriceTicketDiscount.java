@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class HalfPriceTicketDiscount implements IDiscountStrategy {
+public class HalfPriceTicketDiscount implements DiscountStrategy {
 
     private final static double DISCOUNT = .5;
 

@@ -1,6 +1,6 @@
 package net.lelyak.edu.service;
 
-import net.lelyak.edu.discounts.IDiscountStrategy;
+import net.lelyak.edu.discounts.DiscountStrategy;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.User;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
  * <p>
  * getDiscount(user, event, date) - returns discount for each ticket for the user on particular event
  * <p>
- * IDiscountStrategy - single class with logic for calculating discount
+ * DiscountStrategy - single class with logic for calculating discount
  * Birthday strategy - give 5% if user has birthday
  * Every 10th ticket - give 50% for every 10th ticket purchased by user
  * <p>
@@ -28,12 +28,12 @@ import java.util.List;
 public class DiscountService {
 
     @Resource(name = "discountStrategies")
-    private List<IDiscountStrategy> strategies;
+    private List<DiscountStrategy> strategies;
 
     public double getDiscount(User user, Event event, Date date) {
         double totalDiscount = 1;
 
-        for (IDiscountStrategy strategy : strategies) {
+        for (DiscountStrategy strategy : strategies) {
             double discount = strategy.getDiscount(user, event, date);
             if (discount != 0) {
                 totalDiscount *= (1 - discount);

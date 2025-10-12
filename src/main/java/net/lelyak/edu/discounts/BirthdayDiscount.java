@@ -6,7 +6,7 @@ import net.lelyak.edu.entity.User;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BirthdayDiscount implements IDiscountStrategy {
+public class BirthdayDiscount implements DiscountStrategy {
 
     private static final double DISCOUNT = .05;
 

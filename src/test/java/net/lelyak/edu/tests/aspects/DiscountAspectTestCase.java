@@ -2,7 +2,7 @@ package net.lelyak.edu.tests.aspects;
 
 import net.lelyak.edu.BaseTest;
 import net.lelyak.edu.aspects.DiscountAspect.Record;
-import net.lelyak.edu.discounts.IDiscountStrategy;
+import net.lelyak.edu.discounts.DiscountStrategy;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.Ticket;
 import net.lelyak.edu.entity.User;
@@ -43,11 +43,11 @@ public class DiscountAspectTestCase extends BaseTest {
 
         Logger.info("every10TicketDiscountStrategy, discount = " + ticketService.getTicketPrice(event, event.getAirDate(), user));
 
-        Map<IDiscountStrategy, Record> discountCounter = discountAspect.getDiscountCounter();
+        Map<DiscountStrategy, Record> discountCounter = discountAspect.getDiscountCounter();
         Logger.info("DISCOUNT_COUNTER:");
 
         long sum = 0;
-        for (IDiscountStrategy ds : discountCounter.keySet()) {
+        for (DiscountStrategy ds : discountCounter.keySet()) {
             Record record = discountCounter.get(ds);
             Logger.info("  Strategy " + ds.getClass().getName() + "  totalCount=" + record.getTotalCount());
             sum += record.getTotalCount();

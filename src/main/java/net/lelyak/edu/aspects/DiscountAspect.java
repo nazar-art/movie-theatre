@@ -1,7 +1,7 @@
 package net.lelyak.edu.aspects;
 
 import net.lelyak.edu.dao.impl.AspectCounterDAO;
-import net.lelyak.edu.discounts.IDiscountStrategy;
+import net.lelyak.edu.discounts.DiscountStrategy;
 import net.lelyak.edu.entity.Event;
 import net.lelyak.edu.entity.User;
 import net.lelyak.edu.utils.Logger;
@@ -24,7 +24,7 @@ public class DiscountAspect {
     @Autowired
     private AspectCounterDAO aspectCounterDAO;
 
-    private final Map<IDiscountStrategy, Record> discountCounter = new HashMap<>();
+    private final Map<DiscountStrategy, Record> discountCounter = new HashMap<>();
 
     public static class Record {
         long totalCount;
@@ -44,7 +44,7 @@ public class DiscountAspect {
     private void execDiscountStrategyGetDiscount(User user, Event event, Date date) {
     }
 
-    @Pointcut("target(net.lelyak.edu.discounts.IDiscountStrategy)")
+    @Pointcut("target(net.lelyak.edu.discounts.DiscountStrategy)")
     private void targetDiscountStrategy() {
     }
 
@@ -55,9 +55,9 @@ public class DiscountAspect {
 
         Logger.info("afterDiscountStrategyGetDiscount for " + jp.getTarget().getClass().getName());
 
-        if (discount != 0 && IDiscountStrategy.class.isInstance(jp.getTarget())) {
+        if (discount != 0 && DiscountStrategy.class.isInstance(jp.getTarget())) {
 
-            IDiscountStrategy discountStrategy = (IDiscountStrategy) jp.getTarget();
+            DiscountStrategy discountStrategy = (DiscountStrategy) jp.getTarget();
 
             if (!discountCounter.containsKey(discountStrategy)) {
                 discountCounter.put(discountStrategy, new Record());
@@ -75,7 +75,7 @@ public class DiscountAspect {
         }
     }
 
-    public Map<IDiscountStrategy, Record> getDiscountCounter() {
+    public Map<DiscountStrategy, Record> getDiscountCounter() {
         return discountCounter;
     }
 }
