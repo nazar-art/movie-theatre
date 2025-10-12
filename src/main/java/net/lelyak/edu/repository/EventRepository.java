@@ -72,8 +72,8 @@ public class EventRepository extends BaseRepository<Event, EventDAO> {
 
     public Collection<Event> getForDateRange(Date from, Date to) {
         return getDao().getAll().stream()
-                .filter(e -> e.getAirDate().after(from) && e.getAirDate().before(to))
-                .collect(Collectors.toList());
+            .filter(e -> e.getAirDate().after(from) && e.getAirDate().before(to))
+            .collect(Collectors.toList());
     }
 
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
@@ -83,7 +83,7 @@ public class EventRepository extends BaseRepository<Event, EventDAO> {
     public Collection<Event> getNextEvents(Date to) {
         Date now = new Date();
         return getDao().getAll().stream()
-                .filter(e -> e.getAirDate().before(to) && e.getAirDate().after(now))
-                .collect(Collectors.toList());
+            .filter(e -> e.getAirDate().before(to) && e.getAirDate().after(now))
+            .collect(Collectors.toList());
     }
 }

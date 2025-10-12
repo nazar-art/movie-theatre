@@ -18,9 +18,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for user complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="user">
  *   &lt;complexContent>
@@ -36,14 +36,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "user")
 public class User
-    extends BaseEntity
-{
+    extends BaseEntity {
 
     @XmlAttribute(name = "birthday")
     @XmlSchemaType(name = "dateTime")
@@ -59,11 +56,9 @@ public class User
 
     /**
      * Gets the value of the birthday property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getBirthday() {
         return birthday;
@@ -71,11 +66,9 @@ public class User
 
     /**
      * Sets the value of the birthday property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setBirthday(XMLGregorianCalendar value) {
         this.birthday = value;
@@ -83,11 +76,9 @@ public class User
 
     /**
      * Gets the value of the email property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getEmail() {
         return email;
@@ -95,11 +86,9 @@ public class User
 
     /**
      * Sets the value of the email property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setEmail(String value) {
         this.email = value;
@@ -107,11 +96,9 @@ public class User
 
     /**
      * Gets the value of the password property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPassword() {
         return password;
@@ -119,11 +106,9 @@ public class User
 
     /**
      * Sets the value of the password property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPassword(String value) {
         this.password = value;
@@ -131,11 +116,9 @@ public class User
 
     /**
      * Gets the value of the role property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRole() {
         return role;
@@ -143,11 +126,9 @@ public class User
 
     /**
      * Sets the value of the role property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRole(String value) {
         this.role = value;
@@ -155,7 +136,6 @@ public class User
 
     /**
      * Gets the value of the enabled property.
-     * 
      */
     public boolean isEnabled() {
         return enabled;
@@ -163,7 +143,6 @@ public class User
 
     /**
      * Sets the value of the enabled property.
-     * 
      */
     public void setEnabled(boolean value) {
         this.enabled = value;

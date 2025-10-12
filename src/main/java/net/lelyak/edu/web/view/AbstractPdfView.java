@@ -47,7 +47,7 @@ public abstract class AbstractPdfView extends AbstractView {
     }
 
     protected void prepareWriter(Map<String, Object> model, PdfWriter writer, HttpServletRequest request)
-            throws DocumentException {
+        throws DocumentException {
         writer.setViewerPreferences(getViewerPreferences());
     }
 

@@ -4,9 +4,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -36,8 +33,8 @@ public class Auditorium extends BaseEntity {
     @Override
     public String toString() {
         return "Auditorium{" +
-                ", seats=" + seats +
-                ", vip=" + vip +
-                '}';
+            ", seats=" + seats +
+            ", vip=" + vip +
+            '}';
     }
 }

@@ -28,7 +28,7 @@ public class HalfPriceTicketDiscount implements IDiscountStrategy {
 
         if (tickets == null || tickets.isEmpty()) {
             System.out.format("Every10TicketDiscountStrategy.getDiscount: no tickets for user '%s', event '%s'\n",
-                    user.getName(), event.getName());
+                user.getName(), event.getName());
             return 0;
         }
 

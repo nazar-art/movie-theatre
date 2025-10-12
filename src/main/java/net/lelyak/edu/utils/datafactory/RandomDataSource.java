@@ -6,7 +6,13 @@ import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class RandomDataSource {
 
@@ -38,14 +44,14 @@ public class RandomDataSource {
                     switch (data.type()) {
                         case NUMERIC:
                             ReflectionUtils
-                                    .setField(field, entity, getNumeric(data.min(), data.max()));
+                                .setField(field, entity, getNumeric(data.min(), data.max()));
                             break;
 
                         case STRING:
                             if (data.join() != null && !data.join().isEmpty()) {
 
                                 ReflectionUtils.setField(field, entity,
-                                                join(data.join(), getString(data.min(), data.max())));
+                                    join(data.join(), getString(data.min(), data.max())));
                                 break;
                             }
                             ReflectionUtils.setField(field, entity, getString(data.min(), data.max()));
@@ -130,7 +136,7 @@ public class RandomDataSource {
 
     private double getDouble() {
         double randDouble = RandomUtils.nextDouble() * 100;
-        return  (double) Math.round(randDouble);
+        return (double) Math.round(randDouble);
     }
 
     private String getRole() {

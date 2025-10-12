@@ -4,7 +4,11 @@ import net.lelyak.edu.entity.enums.Rating;
 import net.lelyak.edu.utils.datafactory.InjectRandomData;
 import net.lelyak.edu.utils.datafactory.RandomType;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 @XmlRootElement
@@ -81,13 +85,13 @@ public class Event extends BaseEntity {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
-                ", name=" + name +
-                ", airDate=" + airDate +
-                ", ticketPrice=" + ticketPrice +
-                ", rating=" + rating +
-                ", auditorium=" + auditorium +
-                ", auditorium_id=" + auditorium_id +
-                '}';
+            "id=" + id +
+            ", name=" + name +
+            ", airDate=" + airDate +
+            ", ticketPrice=" + ticketPrice +
+            ", rating=" + rating +
+            ", auditorium=" + auditorium +
+            ", auditorium_id=" + auditorium_id +
+            '}';
     }
 }

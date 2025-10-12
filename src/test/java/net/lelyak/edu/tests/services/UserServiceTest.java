@@ -82,9 +82,9 @@ public class UserServiceTest extends BaseTest {
         User testUser = randomUser();
 
         Ticket testTicket = userService.buyTicket(testEvent,
-                testEvent.getAirDate(),
-                testEvent.getAuditorium().getVip(),
-                testUser);
+            testEvent.getAirDate(),
+            testEvent.getAuditorium().getVip(),
+            testUser);
 
         assertEquals(testTicket.getEvent(), testEvent);
         assertEquals(testTicket.getUser(), testUser);
@@ -101,15 +101,15 @@ public class UserServiceTest extends BaseTest {
         for (int i = 0; i < 5 + randomTestGenerator.nextInt(5); i++) {
             Event randomEvent = randomEvent();
             testTickets.add(
-                    userService.buyTicket(randomEvent,
-                            randomEvent.getAirDate(),
-                            randomEvent.getAuditorium().getVip(),
-                            testUser));
+                userService.buyTicket(randomEvent,
+                    randomEvent.getAirDate(),
+                    randomEvent.getAuditorium().getVip(),
+                    testUser));
         }
         Collection<Ticket> loadedTickets = userService.listTickets(testUser);
 
         assertTrue(loadedTickets.containsAll(testTickets)
-                && loadedTickets.size() == testTickets.size());
+            && loadedTickets.size() == testTickets.size());
     }
 
     @Test

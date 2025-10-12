@@ -18,9 +18,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for event complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="event">
  *   &lt;complexContent>
@@ -36,16 +36,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "event", propOrder = {
     "auditorium"
 })
 public class Event
-    extends BaseEntity
-{
+    extends BaseEntity {
 
     protected Auditorium auditorium;
     @XmlAttribute(name = "airDate")
@@ -60,11 +57,9 @@ public class Event
 
     /**
      * Gets the value of the auditorium property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Auditorium }
-     *     
+     *
+     * @return possible object is
+     * {@link Auditorium }
      */
     public Auditorium getAuditorium() {
         return auditorium;
@@ -72,11 +67,9 @@ public class Event
 
     /**
      * Sets the value of the auditorium property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Auditorium }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Auditorium }
      */
     public void setAuditorium(Auditorium value) {
         this.auditorium = value;
@@ -84,11 +77,9 @@ public class Event
 
     /**
      * Gets the value of the airDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getAirDate() {
         return airDate;
@@ -96,11 +87,9 @@ public class Event
 
     /**
      * Sets the value of the airDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setAirDate(XMLGregorianCalendar value) {
         this.airDate = value;
@@ -108,11 +97,9 @@ public class Event
 
     /**
      * Gets the value of the ticketPrice property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
+     *
+     * @return possible object is
+     * {@link Double }
      */
     public Double getTicketPrice() {
         return ticketPrice;
@@ -120,11 +107,9 @@ public class Event
 
     /**
      * Sets the value of the ticketPrice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Double }
      */
     public void setTicketPrice(Double value) {
         this.ticketPrice = value;
@@ -132,11 +117,9 @@ public class Event
 
     /**
      * Gets the value of the rating property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Rating }
-     *     
+     *
+     * @return possible object is
+     * {@link Rating }
      */
     public Rating getRating() {
         return rating;
@@ -144,11 +127,9 @@ public class Event
 
     /**
      * Sets the value of the rating property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Rating }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Rating }
      */
     public void setRating(Rating value) {
         this.rating = value;
@@ -156,11 +137,9 @@ public class Event
 
     /**
      * Gets the value of the auditoriumId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
+     *
+     * @return possible object is
+     * {@link Long }
      */
     public Long getAuditoriumId() {
         return auditoriumId;
@@ -168,11 +147,9 @@ public class Event
 
     /**
      * Sets the value of the auditoriumId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Long }
      */
     public void setAuditoriumId(Long value) {
         this.auditoriumId = value;

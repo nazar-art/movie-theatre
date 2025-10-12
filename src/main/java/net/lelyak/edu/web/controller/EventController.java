@@ -12,14 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("event")
 public class EventController {
 
-	@Autowired
-	private EventRepository eventRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
-	@RequestMapping("/{eventId}")
-	public ModelAndView openEventPage(@PathVariable("eventId") Long eventId) {
-		ModelAndView openEventPageModelAndView = new ModelAndView("events/event");
-		Event eventById = eventRepository.getById(eventId);
-		openEventPageModelAndView.addObject("event", eventById);
-		return openEventPageModelAndView;
-	}
+    @RequestMapping("/{eventId}")
+    public ModelAndView openEventPage(@PathVariable("eventId") Long eventId) {
+        ModelAndView openEventPageModelAndView = new ModelAndView("events/event");
+        Event eventById = eventRepository.getById(eventId);
+        openEventPageModelAndView.addObject("event", eventById);
+        return openEventPageModelAndView;
+    }
 }

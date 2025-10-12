@@ -1,8 +1,8 @@
 package net.lelyak.edu.tests.util;
 
 import net.lelyak.edu.entity.Event;
-import net.lelyak.edu.entity.enums.Rating;
 import net.lelyak.edu.entity.User;
+import net.lelyak.edu.entity.enums.Rating;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

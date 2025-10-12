@@ -6,14 +6,14 @@ import net.lelyak.edu.entity.Auditorium;
 
 public class AuditoriumRepository extends BaseRepository<Auditorium, AuditoriumDAO> {
 
-	@Override
-	public Auditorium preSave(Auditorium entity) {
-		return entity;
-	}
+    @Override
+    public Auditorium preSave(Auditorium entity) {
+        return entity;
+    }
 
-	@Override
-	public Auditorium postLoad(Auditorium entity) {
-		return entity;
-	}
+    @Override
+    public Auditorium postLoad(Auditorium entity) {
+        return entity;
+    }
 
 }

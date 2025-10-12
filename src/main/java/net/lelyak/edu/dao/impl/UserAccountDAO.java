@@ -21,14 +21,14 @@ public class UserAccountDAO extends BaseDAO<UserAccount> {
 
     public UserAccount getForUser(User user) {
         String sql = StringUtilities
-                .appendStrings("SELECT * FROM %s WHERE user_id=:user_id", USER_ACCOUNT_TABLE_NAME);
+            .appendStrings("SELECT * FROM %s WHERE user_id=:user_id", USER_ACCOUNT_TABLE_NAME);
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("user_id", user.getId());
 
         Logger.info(StringUtilities.appendStrings("getForUser( %s ), SQL : [%s] ", user, sql));
 
         UserAccount userAccount = getNamedParameterJdbcTemplate()
-                .queryForObject(sql, parameterSource, new BeanPropertyRowMapper<>(UserAccount.class));
+            .queryForObject(sql, parameterSource, new BeanPropertyRowMapper<>(UserAccount.class));
 
         Logger.info(StringUtilities.appendStrings("getForUser( %s ) : %s ", user, user.toString()));
 

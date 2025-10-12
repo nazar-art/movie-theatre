@@ -49,8 +49,8 @@ public class DiscountAspect {
     }
 
     @AfterReturning(
-            pointcut = "execDiscountStrategyGetDiscount(user, event, date) && targetDiscountStrategy()",
-            returning = "discount", argNames = "jp,user,event,date,discount")
+        pointcut = "execDiscountStrategyGetDiscount(user, event, date) && targetDiscountStrategy()",
+        returning = "discount", argNames = "jp,user,event,date,discount")
     public void afterDiscountStrategyGetDiscount(JoinPoint jp, User user, Event event, Date date, double discount) {
 
         Logger.info("afterDiscountStrategyGetDiscount for " + jp.getTarget().getClass().getName());

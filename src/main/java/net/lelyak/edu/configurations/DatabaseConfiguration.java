@@ -27,10 +27,10 @@ public class DatabaseConfiguration {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 //        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.DERBY)
         EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2)
-                .setName("moviedb")
-                .addScript("/db/sql/create-db.sql")
-                .addScript("/db/sql/insert-data.sql")
-                .build();
+            .setName("moviedb")
+            .addScript("/db/sql/create-db.sql")
+            .addScript("/db/sql/insert-data.sql")
+            .build();
         return db;
     }
 

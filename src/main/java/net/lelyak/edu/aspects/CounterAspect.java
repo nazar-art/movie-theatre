@@ -51,8 +51,8 @@ public class CounterAspect {
     }
 
     @AfterReturning(
-            pointcut = "execEventRepositoryGetByName() && withinEventRepository()",
-            returning = "event")
+        pointcut = "execEventRepositoryGetByName() && withinEventRepository()",
+        returning = "event")
     public void afterExecEventRepositoryGetByName(JoinPoint jp, Event event) {
 
         if (counterEventGetByName.containsKey(event)) {
@@ -65,7 +65,7 @@ public class CounterAspect {
     }
 
     @AfterReturning(
-            pointcut = "execTicketServiceGetTicketPrice(event)", argNames = "jp,event")
+        pointcut = "execTicketServiceGetTicketPrice(event)", argNames = "jp,event")
     public void afterTicketServiceGetTicketPrice(JoinPoint jp, Event event) {
 
         if (counterEventGetTicketPrice.containsKey(event)) {
@@ -78,8 +78,8 @@ public class CounterAspect {
     }
 
     @AfterReturning(
-            pointcut = "execEventTicketBooked()",
-            returning = "ticket")
+        pointcut = "execEventTicketBooked()",
+        returning = "ticket")
     public void afterEventTicketBooked(JoinPoint jp, Ticket ticket) {
 
         Event event = ticket.getEvent();

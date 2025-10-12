@@ -20,14 +20,14 @@ public class UserDAO extends BaseDAO<User> {
 
     public User getByEmail(String email) {
         String sql = StringUtilities
-                .appendStrings("SELECT * FROM %s WHERE email=:email", USER_TABLE_NAME);
+            .appendStrings("SELECT * FROM %s WHERE email=:email", USER_TABLE_NAME);
 
         MapSqlParameterSource parameters = new MapSqlParameterSource("email", email);
 
         Logger.info(StringUtilities.appendStrings("getByEmail( %s ), SQL : [%s] ", email, sql));
 
         User user = getNamedParameterJdbcTemplate()
-                .queryForObject(sql, parameters, new BeanPropertyRowMapper<>(User.class));
+            .queryForObject(sql, parameters, new BeanPropertyRowMapper<>(User.class));
 
         Logger.info(StringUtilities.appendStrings("getByEmail( %s ) : %s ", email, user.toString()));
 

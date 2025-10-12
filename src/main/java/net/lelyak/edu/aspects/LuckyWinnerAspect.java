@@ -24,7 +24,7 @@ public class LuckyWinnerAspect {
     }
 
     @Around(value = "accessEventTicketBooking() && args(user, ticket)",
-            argNames = "joinPoint,user,ticket")
+        argNames = "joinPoint,user,ticket")
     public void checkLuckyUser(ProceedingJoinPoint joinPoint, User user, Ticket ticket) {
         Object targetClass = joinPoint.getTarget();
         Class<?> bookingServiceClass = targetClass.getClass();

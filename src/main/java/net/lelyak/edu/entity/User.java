@@ -28,7 +28,7 @@ public class User extends BaseEntity {
     @InjectRandomData(type = RandomType.ROLE)
     private String role;
 
-//    @InjectRandomData(type = RandomType.ROLE)
+    //    @InjectRandomData(type = RandomType.ROLE)
 //    private List<UserRole> roles;
     @XmlAttribute
     private boolean enabled;
@@ -92,12 +92,12 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name=" + name +
-                ", email='" + email + '\'' +
-                ", birthday=" + birthday +
-                ", roles=" + role +
-                ", enabled=" + enabled +
-                '}';
+            "id=" + id +
+            ", name=" + name +
+            ", email='" + email + '\'' +
+            ", birthday=" + birthday +
+            ", roles=" + role +
+            ", enabled=" + enabled +
+            '}';
     }
 }

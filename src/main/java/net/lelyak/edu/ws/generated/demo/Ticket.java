@@ -18,9 +18,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for ticket complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ticket">
  *   &lt;complexContent>
@@ -37,8 +37,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ticket", propOrder = {
@@ -50,8 +48,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "userId"
 })
 public class Ticket
-    extends BaseEntity
-{
+    extends BaseEntity {
 
     protected Event event;
     @XmlElement(name = "event_id")
@@ -65,11 +62,9 @@ public class Ticket
 
     /**
      * Gets the value of the event property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Event }
-     *     
+     *
+     * @return possible object is
+     * {@link Event }
      */
     public Event getEvent() {
         return event;
@@ -77,11 +72,9 @@ public class Ticket
 
     /**
      * Sets the value of the event property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Event }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Event }
      */
     public void setEvent(Event value) {
         this.event = value;
@@ -89,11 +82,9 @@ public class Ticket
 
     /**
      * Gets the value of the eventId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
+     *
+     * @return possible object is
+     * {@link Long }
      */
     public Long getEventId() {
         return eventId;
@@ -101,11 +92,9 @@ public class Ticket
 
     /**
      * Sets the value of the eventId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Long }
      */
     public void setEventId(Long value) {
         this.eventId = value;
@@ -113,11 +102,9 @@ public class Ticket
 
     /**
      * Gets the value of the onDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getOnDate() {
         return onDate;
@@ -125,11 +112,9 @@ public class Ticket
 
     /**
      * Sets the value of the onDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setOnDate(XMLGregorianCalendar value) {
         this.onDate = value;
@@ -137,11 +122,9 @@ public class Ticket
 
     /**
      * Gets the value of the price property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
+     *
+     * @return possible object is
+     * {@link Double }
      */
     public Double getPrice() {
         return price;
@@ -149,11 +132,9 @@ public class Ticket
 
     /**
      * Sets the value of the price property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Double }
      */
     public void setPrice(Double value) {
         this.price = value;
@@ -161,11 +142,9 @@ public class Ticket
 
     /**
      * Gets the value of the user property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link User }
-     *     
+     *
+     * @return possible object is
+     * {@link User }
      */
     public User getUser() {
         return user;
@@ -173,11 +152,9 @@ public class Ticket
 
     /**
      * Sets the value of the user property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link User }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link User }
      */
     public void setUser(User value) {
         this.user = value;
@@ -185,11 +162,9 @@ public class Ticket
 
     /**
      * Gets the value of the userId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
+     *
+     * @return possible object is
+     * {@link Long }
      */
     public Long getUserId() {
         return userId;
@@ -197,11 +172,9 @@ public class Ticket
 
     /**
      * Sets the value of the userId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Long }
      */
     public void setUserId(Long value) {
         this.userId = value;

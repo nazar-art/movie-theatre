@@ -7,7 +7,11 @@ import net.lelyak.edu.repository.AuditoriumRepository;
 import net.lelyak.edu.repository.EventRepository;
 import net.lelyak.edu.repository.TicketRepository;
 import net.lelyak.edu.repository.UserRepository;
-import net.lelyak.edu.service.*;
+import net.lelyak.edu.service.AdminService;
+import net.lelyak.edu.service.AuditoriumService;
+import net.lelyak.edu.service.DiscountService;
+import net.lelyak.edu.service.TicketService;
+import net.lelyak.edu.service.UserService;
 import net.lelyak.edu.tests.util.RandomTestObjectsGenerator;
 import net.lelyak.edu.utils.Logger;
 import net.lelyak.edu.utils.TestNGListener;
@@ -20,8 +24,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 @Listeners({TestNGListener.class,
-        org.uncommons.reportng.HTMLReporter.class,
-        org.uncommons.reportng.JUnitXMLReporter.class})
+    org.uncommons.reportng.HTMLReporter.class,
+    org.uncommons.reportng.JUnitXMLReporter.class})
 @ContextConfiguration(locations = "file:**/spring-context.xml")
 public abstract class BaseTest extends AbstractTestNGSpringContextTests {
 

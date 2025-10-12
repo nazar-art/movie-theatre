@@ -23,9 +23,9 @@ public class UserAccount extends BaseEntity {
     @Override
     public String toString() {
         return "UserAccount{" +
-                "id=" + id +
-                ", balance=" + balance +
-                ", user_id=" + user_id +
-                '}';
+            "id=" + id +
+            ", balance=" + balance +
+            ", user_id=" + user_id +
+            '}';
     }
 }

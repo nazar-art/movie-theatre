@@ -31,13 +31,13 @@ public class UserDetailsServiceImpl implements org.springframework.security.core
     private org.springframework.security.core.userdetails.User buildUserForAuthentication(User user,
                                                                                           List<GrantedAuthority> authorities) {
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                user.isEnabled(), true, true, true, authorities);
+            user.isEnabled(), true, true, true, authorities);
     }
 
     private List<GrantedAuthority> buildUserAuthority(List<UserRole> userRoles) {
         return userRoles.stream()
-                .map(userRole -> new SimpleGrantedAuthority(userRole.name()))
-                .collect(Collectors.toList());
+            .map(userRole -> new SimpleGrantedAuthority(userRole.name()))
+            .collect(Collectors.toList());
     }
 
     private List<GrantedAuthority> buildUserAuthority(String userRole) {

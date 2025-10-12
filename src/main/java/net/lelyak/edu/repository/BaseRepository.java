@@ -38,14 +38,14 @@ public abstract class BaseRepository<E extends BaseEntity, DAO extends BaseDAO<E
 
     public Collection<E> getAll() {
         return dao.getAll().stream()
-                .map(this::postLoad)
-                .collect(toList());
+            .map(this::postLoad)
+            .collect(toList());
     }
 
     public void putAll(Collection<E> entities) {
         dao.saveAll(entities.stream()
-                .map(this::postLoad)
-                .collect(toList()));
+            .map(this::postLoad)
+            .collect(toList()));
     }
 
     public int getTotalCount() {

@@ -14,9 +14,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for auditorium complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="auditorium">
  *   &lt;complexContent>
@@ -29,14 +29,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "auditorium")
 public class Auditorium
-    extends BaseEntity
-{
+    extends BaseEntity {
 
     @XmlAttribute(name = "seats")
     protected Integer seats;
@@ -45,11 +42,9 @@ public class Auditorium
 
     /**
      * Gets the value of the seats property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     *
+     * @return possible object is
+     * {@link Integer }
      */
     public Integer getSeats() {
         return seats;
@@ -57,11 +52,9 @@ public class Auditorium
 
     /**
      * Sets the value of the seats property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Integer }
      */
     public void setSeats(Integer value) {
         this.seats = value;
@@ -69,11 +62,9 @@ public class Auditorium
 
     /**
      * Gets the value of the vip property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getVip() {
         return vip;
@@ -81,11 +72,9 @@ public class Auditorium
 
     /**
      * Sets the value of the vip property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setVip(String value) {
         this.vip = value;

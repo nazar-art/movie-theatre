@@ -13,10 +13,9 @@ import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
-
 public class DiscountAspectTestCase extends BaseTest {
 
-    @Test // todo fix test logic for this test
+    @Test
     public void testAfterDiscountStrategyGetDiscount() {
         User user = randomTestGenerator.randomUser();
         Event event = randomTestGenerator.randomEvent();

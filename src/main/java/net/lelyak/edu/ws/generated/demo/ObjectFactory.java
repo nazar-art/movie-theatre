@@ -15,18 +15,17 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the demo package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the demo package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -37,14 +36,12 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: demo
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Auditorium }
-     * 
      */
     public Auditorium createAuditorium() {
         return new Auditorium();
@@ -52,7 +49,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Event }
-     * 
      */
     public Event createEvent() {
         return new Event();
@@ -60,7 +56,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link User }
-     * 
      */
     public User createUser() {
         return new User();
@@ -68,7 +63,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Ticket }
-     * 
      */
     public Ticket createTicket() {
         return new Ticket();
@@ -76,7 +70,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Auditorium }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "", name = "auditorium")
     public JAXBElement<Auditorium> createAuditorium(Auditorium value) {
@@ -85,7 +78,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Event }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "", name = "event")
     public JAXBElement<Event> createEvent(Event value) {
@@ -94,7 +86,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link User }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "", name = "user")
     public JAXBElement<User> createUser(User value) {

@@ -6,10 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 //@Configuration
 /*@PropertySource({
         "classpath:properties/auditorium1.properties",

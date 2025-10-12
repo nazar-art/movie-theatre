@@ -86,12 +86,12 @@ public class Ticket extends BaseEntity {
     public String toString() {
         DateFormat df = new SimpleDateFormat("d MM yyyy H:mm");
         return "Ticket{" +
-                "id=" + id +
-                ", name=" + name +
-                ", price=" + price +
-                ", onDate=" + df.format(onDate) +
-                ", event=" + event +
-                ", user=" + user +
-                '}';
+            "id=" + id +
+            ", name=" + name +
+            ", price=" + price +
+            ", onDate=" + df.format(onDate) +
+            ", event=" + event +
+            ", user=" + user +
+            '}';
     }
 }

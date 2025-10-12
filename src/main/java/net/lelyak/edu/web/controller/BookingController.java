@@ -22,41 +22,41 @@ import java.util.List;
 @RequestMapping("ticket")
 public class BookingController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private AuditoriumService auditoriumService;
+    @Autowired
+    private AuditoriumService auditoriumService;
 
-	@Autowired
-	private TicketService ticketService;
+    @Autowired
+    private TicketService ticketService;
 
-	@Autowired
-	private EventRepository eventRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
 
-	@RequestMapping(value = "/book/{id}", method = RequestMethod.POST)
-	public String bookPlaceForEvent(
-			@PathVariable("id") long id,
-			@RequestParam("targetSeats") List<String> chosenSeatsStrings) {
-		Logger.info("Chosen seats string: " + chosenSeatsStrings.toString());
+    @RequestMapping(value = "/book/{id}", method = RequestMethod.POST)
+    public String bookPlaceForEvent(
+        @PathVariable("id") long id,
+        @RequestParam("targetSeats") List<String> chosenSeatsStrings) {
+        Logger.info("Chosen seats string: " + chosenSeatsStrings.toString());
 
-		User customer = userService.getAll().get(0);
-		Event targetEvent = eventRepository.getById(id);
+        User customer = userService.getAll().get(0);
+        Event targetEvent = eventRepository.getById(id);
 
-		Long[] chosenSeats = new Long[chosenSeatsStrings.size()];
-		Logger.info("Chosen seats string: " + Arrays.toString(chosenSeats));
-		for (int i = 0; i < chosenSeatsStrings.size(); i++) {
-			chosenSeats[i] = Long.parseLong(chosenSeatsStrings.get(i));
-		}
+        Long[] chosenSeats = new Long[chosenSeatsStrings.size()];
+        Logger.info("Chosen seats string: " + Arrays.toString(chosenSeats));
+        for (int i = 0; i < chosenSeatsStrings.size(); i++) {
+            chosenSeats[i] = Long.parseLong(chosenSeatsStrings.get(i));
+        }
 
-		Ticket ticket = new Ticket();
-		ticket.setEvent(targetEvent);
-		ticket.setUser(customer);
-		String seatNumber = Arrays.toString(chosenSeats);
-		ticket.setName(seatNumber);
-		ticketService.bookTicket(targetEvent, targetEvent.getAirDate(), seatNumber, customer);
-		return "redirect:/tickets/my";
-	}
+        Ticket ticket = new Ticket();
+        ticket.setEvent(targetEvent);
+        ticket.setUser(customer);
+        String seatNumber = Arrays.toString(chosenSeats);
+        ticket.setName(seatNumber);
+        ticketService.bookTicket(targetEvent, targetEvent.getAirDate(), seatNumber, customer);
+        return "redirect:/tickets/my";
+    }
 
 }

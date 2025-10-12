@@ -31,26 +31,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+            .passwordEncoder(passwordEncoder());
     }
 
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .exceptionHandling().accessDeniedPage("/denied")
-                .and()
-                .formLogin().loginPage("/login").failureUrl("/login?error")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/")
-                .and()
-                .logout().logoutSuccessUrl("/login?logout")
-                .and()
-                .authorizeRequests().antMatchers("/login", "/register", "/resources/**").permitAll()
-                .antMatchers("/events/manage").hasAuthority("BOOKING_MANAGER")
-                .anyRequest().authenticated()
-                .and()
-                .rememberMe().tokenValiditySeconds(10_000).tokenRepository(persistentTokenRepository())
-                .and().csrf().disable();
+            .exceptionHandling().accessDeniedPage("/denied")
+            .and()
+            .formLogin().loginPage("/login").failureUrl("/login?error")
+            .usernameParameter("username")
+            .passwordParameter("password")
+            .defaultSuccessUrl("/")
+            .and()
+            .logout().logoutSuccessUrl("/login?logout")
+            .and()
+            .authorizeRequests().antMatchers("/login", "/register", "/resources/**").permitAll()
+            .antMatchers("/events/manage").hasAuthority("BOOKING_MANAGER")
+            .anyRequest().authenticated()
+            .and()
+            .rememberMe().tokenValiditySeconds(10_000).tokenRepository(persistentTokenRepository())
+            .and().csrf().disable();
     }
 
     @Bean
@@ -65,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     savedRequestAwareAuthenticationSuccessHandler() {
 
         SavedRequestAwareAuthenticationSuccessHandler auth
-                = new SavedRequestAwareAuthenticationSuccessHandler();
+            = new SavedRequestAwareAuthenticationSuccessHandler();
         auth.setTargetUrlParameter("targetUrl");
         return auth;
     }

@@ -78,7 +78,7 @@ public class AdminServiceTestCase extends BaseTest {
         }
 
         assertTrue(adminServiceTickets.containsAll(ticketRepositoryTickets)
-                && adminServiceTickets.size() == ticketRepositoryTickets.size());
+            && adminServiceTickets.size() == ticketRepositoryTickets.size());
 
     }
 }

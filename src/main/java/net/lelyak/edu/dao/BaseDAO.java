@@ -71,11 +71,11 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
     public ENTITY getById(long id) {
 
         return getNamedParameterJdbcTemplate()
-                .queryForObject(
-                        String.format("SELECT * FROM %s WHERE id=:id", tableName),
-                        new MapSqlParameterSource("id", id),
-                        new BeanPropertyRowMapper<>(entityClass)
-                );
+            .queryForObject(
+                String.format("SELECT * FROM %s WHERE id=:id", tableName),
+                new MapSqlParameterSource("id", id),
+                new BeanPropertyRowMapper<>(entityClass)
+            );
     }
 
     @Override
@@ -84,11 +84,11 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
             return null;
         }
         return getNamedParameterJdbcTemplate()
-                .queryForObject(
-                        String.format("SELECT * FROM %s WHERE name=:name", tableName),
-                        new MapSqlParameterSource("name", name),
-                        new BeanPropertyRowMapper<>(entityClass)
-                );
+            .queryForObject(
+                String.format("SELECT * FROM %s WHERE name=:name", tableName),
+                new MapSqlParameterSource("name", name),
+                new BeanPropertyRowMapper<>(entityClass)
+            );
     }
 
     @Override
@@ -101,26 +101,26 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
     public void delete(ENTITY entity) {
 
         int rowCount = getNamedParameterJdbcTemplate().update(
-                String.format("DELETE FROM %s WHERE id=:id", tableName),
-                new MapSqlParameterSource("id", entity.getId())
+            String.format("DELETE FROM %s WHERE id=:id", tableName),
+            new MapSqlParameterSource("id", entity.getId())
         );
 
         Logger.info(StringUtilities
-                .appendStrings("Delete %d %s rows deleted: %d", entity.getId(), entity.getName(), rowCount));
+            .appendStrings("Delete %d %s rows deleted: %d", entity.getId(), entity.getName(), rowCount));
     }
 
     @Override
     public List<ENTITY> getAll() {
         return getNamedParameterJdbcTemplate().query(
-                String.format("SELECT * FROM %s", tableName),
-                new BeanPropertyRowMapper<>(entityClass));
+            String.format("SELECT * FROM %s", tableName),
+            new BeanPropertyRowMapper<>(entityClass));
     }
 
     @Override
     public int getTotalCount() {
         return getJdbcTemplate().queryForObject(
-                String.format("SELECT COUNT(*) FROM %s", tableName),
-                int.class);
+            String.format("SELECT COUNT(*) FROM %s", tableName),
+            int.class);
     }
 
     private long insert(ENTITY entity) {
@@ -133,9 +133,9 @@ public abstract class BaseDAO<ENTITY extends BaseEntity> extends NamedParameterJ
 
     protected boolean exists(long id) {
         long rowCount = getNamedParameterJdbcTemplate().queryForObject(
-                String.format("SELECT COUNT(*) FROM %s WHERE id=:id", tableName),
-                new MapSqlParameterSource("id", id),
-                long.class);
+            String.format("SELECT COUNT(*) FROM %s WHERE id=:id", tableName),
+            new MapSqlParameterSource("id", id),
+            long.class);
         return rowCount > 0;
     }
 
