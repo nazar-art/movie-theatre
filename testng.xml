@@ -16,7 +16,7 @@
     <test name="AOP tests">
         <classes>
             <class name="net.lelyak.edu.tests.aspects.CounterAspectTestCase"/>
-            <!--<class name="net.lelyak.edu.tests.aspects.DiscountAspectTestCase"/>-->
+            <class name="net.lelyak.edu.tests.aspects.DiscountAspectTestCase"/>
         </classes>
     </test>
 
