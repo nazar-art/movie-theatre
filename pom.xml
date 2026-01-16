@@ -19,7 +19,7 @@
 
         <spring.version>4.2.4.RELEASE</spring.version>
         <spring.before.version>3.2.13.RELEASE</spring.before.version>
-        <spring.security.version>3.2.4.RELEASE</spring.security.version>
+        <spring.security.version>5.5.7</spring.security.version>
         <aspectj.version>1.8.4</aspectj.version>
         <java.version>1.8</java.version>
     </properties>
